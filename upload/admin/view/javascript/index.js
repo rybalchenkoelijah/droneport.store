@@ -16,7 +16,7 @@ config.cache.set('default', {
     config_path: base + 'view/javascript/',
     config_name: 'OpenCart Store',
     config_logo: 'catalog/opencart-logo.png',
-    config_url: 'http://localhost/opencart-master/upload/admin/',
+    config_url: base.href,
     config_telephone: '01234 567890',
     config_language: 'en-gb',
     config_currency: 'EUR',

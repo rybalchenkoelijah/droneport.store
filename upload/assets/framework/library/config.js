@@ -64,7 +64,7 @@ const base = new URL(document.querySelector('base').href);
 let values = Object.entries({
     config_path: base + 'catalog/view/javascript/',
     config_logo: 'catalog/opencart-logo.png',
-    config_url: 'http://localhost/opencart-master/upload/',
+    config_url: base.href,
     config_name: 'OpenCart Store',
     config_owner: 'John Doe',
     config_address: '44 Abc Road,' + "\n" + 'TX',

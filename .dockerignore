@@ -39,3 +39,13 @@ lerna-debug.log*
 # Temporary files
 *.tmp
 *.temp
+
+# Local OpenCart install artifacts (never bake into images)
+upload/.htaccess
+upload/config.php
+upload/admin/config.php
+upload/install.lock
+upload/image/cache/*
+upload/system/storage/cache/*
+upload/system/storage/logs/*
+upload/system/storage/session/*

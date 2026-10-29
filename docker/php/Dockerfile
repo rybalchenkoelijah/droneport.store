@@ -2,7 +2,7 @@
 # It defaults to 8.4 if no 'PHP_VERSION' build-arg is passed from docker-compose.
 ARG PHP_VERSION=8.4
 
-FROM php:${PHP_VERSION}-fpm
+FROM php:${PHP_VERSION}-fpm AS base
 
 # Set timezone
 ENV TZ=UTC
@@ -57,3 +57,11 @@ WORKDIR /var/www
 # Use OpenCart entrypoint
 ENTRYPOINT ["docker-opencart-entrypoint"]
 CMD ["supervisord", "-c", "/etc/supervisor/supervisord.conf"]
+
+# Production: code baked into the image (used by docker-compose.prod.yml / Coolify)
+FROM base AS production
+COPY --chown=www-data:www-data upload /var/www/upload
+COPY docker/php/cron/crontab /var/www/docker/php/cron/crontab
+
+# Development (default, last stage): code is bind-mounted by docker-compose.yml
+FROM base AS development
