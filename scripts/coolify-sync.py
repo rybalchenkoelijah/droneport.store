@@ -45,12 +45,14 @@ def sync():
     call("PATCH", f"/applications/{APP}", CONFIG["settings"])
     print("settings: ok")
 
-    existing = {e["key"]: e for e in call("GET", f"/applications/{APP}/envs") if not e.get("is_preview")}
+    envs = call("GET", f"/applications/{APP}/envs")
+    existing = {e["key"]: e for e in envs if not e.get("is_preview")}
 
-    for key in CONFIG.get("obsolete_env", []):
-        if key in existing:
-            call("DELETE", f"/applications/{APP}/envs/{existing[key]['uuid']}")
-            print(f"env: removed {key}")
+    # Includes preview copies: Coolify passes every variable to the build as a build arg
+    for e in envs:
+        if e["key"] in CONFIG.get("obsolete_env", []):
+            call("DELETE", f"/applications/{APP}/envs/{e['uuid']}")
+            print(f"env: removed {e['key']}" + (" (preview)" if e.get("is_preview") else ""))
 
     data = [{"key": k, "value": v} for k, v in CONFIG.get("env", {}).items()]
     for key in CONFIG.get("required_secrets", []):
