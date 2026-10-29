@@ -1,0 +1,39 @@
+{
+  "coolify_url": "https://coolify.droneport.store",
+  "application_uuid": "uteuottmei9fcbaukncr1faf",
+  "settings": {
+    "name": "droneport-store",
+    "git_repository": "rybalchenkoelijah/droneport.store",
+    "git_branch": "production",
+    "build_pack": "dockercompose",
+    "base_directory": "/",
+    "docker_compose_location": "/docker-compose.prod.yml"
+  },
+  "domains": {
+    "apache": "https://droneport.store"
+  },
+  "env": {
+    "OPENCART_USERNAME": "admin",
+    "OPENCART_HTTP_SERVER": "https://droneport.store/",
+    "TZ": "Europe/Kyiv"
+  },
+  "required_secrets": [
+    "OPENCART_PASSWORD",
+    "DB_PASSWORD",
+    "DB_ROOT_PASSWORD"
+  ],
+  "obsolete_env": [
+    "HTTP_EXPOSE_PORT",
+    "PHP_FPM_EXPOSE_PORT",
+    "DB_EXPOSE_PORT",
+    "PHP_VERSION",
+    "PHP_UNAME",
+    "PHP_UID",
+    "DB_DRIVER",
+    "DB_HOSTNAME",
+    "DB_USERNAME",
+    "DB_DATABASE",
+    "DB_PORT",
+    "DB_PREFIX"
+  ]
+}

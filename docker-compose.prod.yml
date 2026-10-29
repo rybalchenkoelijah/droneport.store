@@ -1,0 +1,91 @@
+# Production stack for Coolify (https://coolify.droneport.store).
+# Local development uses docker-compose.yml instead.
+#
+# Differences from docker-compose.yml:
+#   - code is baked into the images (`production` build target), no bind mounts;
+#   - no host ports: Coolify's Traefik proxy routes https://droneport.store to apache:80;
+#   - installer output, uploaded images and storage live in named volumes.
+#
+# Secrets are NOT stored here. Set them in Coolify (Environment Variables):
+#   OPENCART_PASSWORD, DB_PASSWORD, DB_ROOT_PASSWORD
+# Coolify-side settings (repo, branch, domain, this file's path) are in .coolify/app.json
+# and are applied with scripts/coolify-sync.sh.
+
+name: droneport
+
+services:
+  apache:
+    build:
+      context: .
+      dockerfile: docker/apache/Dockerfile
+      target: production
+    environment:
+      # Tells Coolify that the public domain is served by this service on port 80
+      - SERVICE_FQDN_APACHE_80
+    volumes:
+      - opencart-image:/var/www/upload/image
+    depends_on:
+      php:
+        condition: service_healthy
+    restart: unless-stopped
+
+  php:
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile
+      target: production
+      args:
+        - PHP_VERSION=8.4
+    environment:
+      - TZ=${TZ:-Europe/Kyiv}
+      - OPENCART_STATE_DIR=/var/www/state
+      - OPENCART_USERNAME=${OPENCART_USERNAME:-admin}
+      - OPENCART_PASSWORD=${OPENCART_PASSWORD:?set OPENCART_PASSWORD in Coolify}
+      - OPENCART_ADMIN_EMAIL=${OPENCART_ADMIN_EMAIL:-rybalchenko.elijah@gmail.com}
+      - OPENCART_HTTP_SERVER=${OPENCART_HTTP_SERVER:-https://droneport.store/}
+      - DB_DRIVER=mysqli
+      - DB_HOSTNAME=mysql
+      - DB_USERNAME=${DB_USERNAME:-opencart}
+      - DB_PASSWORD=${DB_PASSWORD:?set DB_PASSWORD in Coolify}
+      - DB_DATABASE=${DB_DATABASE:-opencart}
+      - DB_PORT=3306
+      - DB_PREFIX=oc_
+    volumes:
+      - opencart-state:/var/www/state
+      - opencart-image:/var/www/upload/image
+      - opencart-storage:/var/www/upload/system/storage
+    depends_on:
+      mysql:
+        condition: service_healthy
+    healthcheck:
+      # Healthy once the installer has finished and its state is saved
+      test: ["CMD-SHELL", "test -f /var/www/state/install.lock"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+      # First start runs the OpenCart installer, which can take a while
+      start_period: 300s
+    restart: unless-stopped
+
+  mysql:
+    image: mariadb
+    environment:
+      - MARIADB_ROOT_PASSWORD=${DB_ROOT_PASSWORD:?set DB_ROOT_PASSWORD in Coolify}
+      - MARIADB_DATABASE=${DB_DATABASE:-opencart}
+      - MARIADB_USER=${DB_USERNAME:-opencart}
+      - MARIADB_PASSWORD=${DB_PASSWORD:?set DB_PASSWORD in Coolify}
+    volumes:
+      - mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 30s
+    restart: unless-stopped
+
+volumes:
+  mysql-data:
+  opencart-state:
+  opencart-image:
+  opencart-storage:
