@@ -104,9 +104,15 @@ if [ ! -f "install.lock" ] && [ -f "install/cli_install.php" ]; then
         --db_database "${DB_DATABASE:-opencart}" \
         --db_port "${DB_PORT:-3306}" \
         --db_prefix "${DB_PREFIX:-oc_}" \
-        && touch "install.lock" \
-        && echo "--- OpenCart installation completed ---" \
-        || echo "--- OpenCart installation failed ---"
+        | tee /tmp/opencart-install.log
+
+    # cli_install.php exits 0 even on validation errors, so check that it actually wrote the config
+    if [ -s "config.php" ] && ! grep -q "^ERROR" /tmp/opencart-install.log; then
+        touch "install.lock"
+        echo "--- OpenCart installation completed ---"
+    else
+        echo "--- OpenCart installation failed ---"
+    fi
 fi
 
 # ================================================================

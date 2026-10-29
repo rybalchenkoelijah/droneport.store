@@ -55,7 +55,8 @@ def sync():
     data = [{"key": k, "value": v} for k, v in CONFIG.get("env", {}).items()]
     for key in CONFIG.get("required_secrets", []):
         if key not in existing:
-            data.append({"key": key, "value": secrets.token_hex(16)})
+            # 16 chars: OpenCart admin passwords must be 5-20 characters
+            data.append({"key": key, "value": secrets.token_hex(8)})
             print(f"env: generated secret {key}")
     if data:
         call("PATCH", f"/applications/{APP}/envs/bulk", {"data": data})
