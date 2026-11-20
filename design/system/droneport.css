@@ -1,195 +1,112 @@
-/* Дронопорт v2 — стилі компонентів. Кожне значення кольору, відступу, радіуса й розміру береться з tokens.css. */
-/* cyrillic-ext */
-@font-face {
-  font-family: 'Science Gothic';
-  font-style: oblique 0deg 10deg;
-  font-weight: 100 900;
-  font-stretch: 50% 200%;
-  font-display: swap;
-  src: url(../fonts/ScienceGothic-100-900-cyrillic-ext-fe1638.woff2) format('woff2');
-  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+@import url("https://fonts.googleapis.com/css2?family=Geologica:wght@400..600&family=Martian+Mono:wdth,wght@87.5,400..600&display=swap");
+/* Дронопорт — дизайн-система. ЗГЕНЕРОВАНО: node design/build.mjs. Не правити руками: джерело — project/tokens.json і project/components/bundle.css. */
+:root, [data-theme="dark"] {
+  --bg: #191919;
+  --bg-side: #1F1F1F;
+  --bg-raised: #303030;
+  --plate: #E3E2DD;
+  --on-plate: #55554F;
+  --text: rgba(255,255,255,0.93);
+  --text-2: rgba(255,255,255,0.57);
+  --text-3: rgba(255,255,255,0.52);
+  --line: rgba(255,255,255,0.1);
+  --line-strong: rgba(255,255,255,0.12);
+  --line-control: rgba(255,255,255,0.42);
+  --fill: rgba(255,255,255,0.075);
+  --fill-strong: rgba(255,255,255,0.15);
+  --olive: #8A9A52;
+  --on-olive: #0E100C;
+  --olive-ink: #B4C47A;
+  --brand: #6B7A3A;
+  --warn: #E0B040;
+  --danger: #F07A6A;
+  --hit: rgba(251,179,21,0.3);
+  --scrim: rgba(0,0,0,0.5);
+  --shadow-raised: 0 4px 20px rgba(0,0,0,0.035);
+  color-scheme: dark;
 }
-/* cyrillic */
-@font-face {
-  font-family: 'Science Gothic';
-  font-style: oblique 0deg 10deg;
-  font-weight: 100 900;
-  font-stretch: 50% 200%;
-  font-display: swap;
-  src: url(../fonts/ScienceGothic-100-900-cyrillic-ae4b89.woff2) format('woff2');
-  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+[data-theme="light"] {
+  --bg: #FFFFFF;
+  --bg-side: #FAFAFA;
+  --bg-raised: #FFFFFF;
+  --plate: #FFFFFF;
+  --on-plate: #5E5E5E;
+  --text: rgba(0,0,0,0.9);
+  --text-2: rgba(0,0,0,0.6);
+  --text-3: rgba(0,0,0,0.54);
+  --line: rgba(0,0,0,0.08);
+  --line-strong: rgba(0,0,0,0.12);
+  --line-control: rgba(0,0,0,0.45);
+  --fill: rgba(0,0,0,0.05);
+  --fill-strong: rgba(0,0,0,0.1);
+  --olive: #5C6A30;
+  --on-olive: #FFFFFF;
+  --olive-ink: #4F5A2A;
+  --brand: #6B7A3A;
+  --warn: #8A5A00;
+  --danger: #A6342A;
+  --hit: rgba(251,179,21,0.33);
+  --scrim: rgba(0,0,0,0.35);
+  --shadow-raised: 0 4px 20px rgba(0,0,0,0.035);
+  color-scheme: light;
 }
-/* latin-ext */
-@font-face {
-  font-family: 'Science Gothic';
-  font-style: oblique 0deg 10deg;
-  font-weight: 100 900;
-  font-stretch: 50% 200%;
-  font-display: swap;
-  src: url(../fonts/ScienceGothic-100-900-latin-ext-991f1a.woff2) format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+:root {
+  --space-2: 2px;
+  --space-4: 4px;
+  --space-6: 6px;
+  --space-8: 8px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-24: 24px;
+  --space-32: 32px;
+  --space-48: 48px;
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 14px;
+  --radius-pill: 999px;
+  --side: 288px;
+  --panel: 320px;
+  --bar: 45px;
+  --row: 32px;
+  --control: 28px;
+  --control-field: 36px;
+  --control-touch: 44px;
+  --measure: 768px;
+  --icon: 20px;
+  --icon-sm: 16px;
+  --marker: 22px;
+  --logo: 24px;
+  --line-w: 1px;
+  --line-focus: 2px;
+  --line-icon: 1.4px;
+  --line-dwg-main: 2px;
+  --line-dwg-dim: 1px;
+  --dur-fast: 0.06s;
+  --dur-base: 0.2s;
+  --ease-std: cubic-bezier(.4,0,.2,1);
+  --ease-snap: cubic-bezier(.32,.72,0,1);
+  --bp-sm: 760px;
+  --bp-lg: 1100px;
+  --font-text: "Geologica", system-ui, sans-serif;
+  --font-mark: "Martian Mono", ui-monospace, monospace;
+  --font-draw: "Science Gothic", "Arial Narrow", sans-serif;
 }
-/* latin */
-@font-face {
-  font-family: 'Science Gothic';
-  font-style: oblique 0deg 10deg;
-  font-weight: 100 900;
-  font-stretch: 50% 200%;
-  font-display: swap;
-  src: url(../fonts/ScienceGothic-100-900-latin-83e94a.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* cyrillic-ext */
-@font-face {
-  font-family: 'Geologica';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(../fonts/Geologica-400-cyrillic-ext-a4fa32.woff2) format('woff2');
-  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
-}
-/* cyrillic */
-@font-face {
-  font-family: 'Geologica';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(../fonts/Geologica-400-cyrillic-189ca8.woff2) format('woff2');
-  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Geologica';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(../fonts/Geologica-400-latin-ext-52635b.woff2) format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Geologica';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(../fonts/Geologica-400-latin-d17690.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* cyrillic-ext */
-@font-face {
-  font-family: 'Geologica';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url(../fonts/Geologica-400-cyrillic-ext-a4fa32.woff2) format('woff2');
-  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
-}
-/* cyrillic */
-@font-face {
-  font-family: 'Geologica';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url(../fonts/Geologica-400-cyrillic-189ca8.woff2) format('woff2');
-  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Geologica';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url(../fonts/Geologica-400-latin-ext-52635b.woff2) format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Geologica';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url(../fonts/Geologica-400-latin-d17690.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* cyrillic-ext */
-@font-face {
-  font-family: 'Geologica';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url(../fonts/Geologica-400-cyrillic-ext-a4fa32.woff2) format('woff2');
-  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
-}
-/* cyrillic */
-@font-face {
-  font-family: 'Geologica';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url(../fonts/Geologica-400-cyrillic-189ca8.woff2) format('woff2');
-  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Geologica';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url(../fonts/Geologica-400-latin-ext-52635b.woff2) format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Geologica';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url(../fonts/Geologica-400-latin-d17690.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* cyrillic-ext */
-@font-face {
-  font-family: 'Martian Mono';
-  font-style: normal;
-  font-weight: 100 800;
-  font-stretch: 75% 112.5%;
-  font-display: swap;
-  src: url(../fonts/MartianMono-100-800-cyrillic-ext-f8475c.woff2) format('woff2');
-  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
-}
-/* cyrillic */
-@font-face {
-  font-family: 'Martian Mono';
-  font-style: normal;
-  font-weight: 100 800;
-  font-stretch: 75% 112.5%;
-  font-display: swap;
-  src: url(../fonts/MartianMono-100-800-cyrillic-11d962.woff2) format('woff2');
-  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Martian Mono';
-  font-style: normal;
-  font-weight: 100 800;
-  font-stretch: 75% 112.5%;
-  font-display: swap;
-  src: url(../fonts/MartianMono-100-800-latin-ext-c0c8e8.woff2) format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Martian Mono';
-  font-style: normal;
-  font-weight: 100 800;
-  font-stretch: 75% 112.5%;
-  font-display: swap;
-  src: url(../fonts/MartianMono-100-800-latin-0d3bf3.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-
+.title { font-family: var(--font-text); font-size: 22px; line-height: 28px; font-weight: 580; }
+.heading { font-family: var(--font-text); font-size: 17px; line-height: 24px; font-weight: 580; }
+.body { font-family: var(--font-text); font-size: 15px; line-height: 21px; font-weight: 400; }
+.ui { font-family: var(--font-text); font-size: 14px; line-height: 20px; font-weight: 400; }
+.control { font-family: var(--font-text); font-size: 13px; line-height: 16px; font-weight: 435; }
+.caption { font-family: var(--font-text); font-size: 13px; line-height: 19px; font-weight: 400; }
+.label { font-family: var(--font-text); font-size: 12px; line-height: 20px; font-weight: 520; }
+.mark { font-family: var(--font-mark); font-size: 12.5px; line-height: 1; font-weight: 400; }
+.dwg { font-family: var(--font-mark); font-size: 11px; line-height: 1; font-weight: 400; }
+.wordmark { font-family: var(--font-draw); font-size: 56px; line-height: 0.95; font-weight: 900; }
+/* Дронопорт — стилі компонентів. Кожне значення кольору, відступу, радіуса й розміру береться з tokens.css. */
 /* ---------- основа ---------- */
 *,*::before,*::after{box-sizing:border-box}
+html:has(>body>.app),body:has(>.app){height:100%}
 body{margin:0;background:var(--bg);color:var(--text);font:400 14px/20px var(--font-text);-webkit-font-smoothing:antialiased}
 h1,h2,h3,p,ul,ol,figure{margin:0;padding:0}
 ul,ol{list-style:none}
@@ -514,6 +431,7 @@ a.pos:hover,a.pos:focus-visible{background:var(--fill-strong)}
 .codeblock{margin:0 0 var(--space-12);border-radius:var(--radius-lg);background:var(--fill);overflow:hidden}
 .codeblock-head{display:flex;align-items:center;gap:var(--space-8);min-height:40px;padding:var(--space-6) var(--space-6) var(--space-6) var(--space-16);border-bottom:var(--line-w) solid var(--line);color:var(--text-2);font-size:13px;line-height:19px}
 .codeblock-head>b{min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;color:var(--text);font:400 12.5px/19px var(--font-mark);font-stretch:87.5%}
+.codeblock-head>b:empty{display:none}
 .codeblock-head>span{white-space:nowrap}
 .codeblock-head>.btn{margin-left:auto;flex:none}
 .codeblock pre{margin:0;padding:var(--space-12) var(--space-16);overflow-x:auto;font:400 12.5px/20px var(--font-mark);font-stretch:87.5%;tab-size:2;white-space:pre}

@@ -4,7 +4,7 @@
 
 **Goal:** Перебудувати дизайн-систему «Дронопорт» за варіантом 2: інтерфейс, дуже схожий на застосунок Claude (еталон — знімок екрана сесії Claude Code в темній темі, наданий користувачем 20.11.2026), мова креслення лише у справжніх кресленнях.
 
-**Architecture:** Файли системи живуть у репозиторії в `design/ds-v2/project/` у форматі артефакту Design System (`tokens.json`, `README.md`, `components/…`). `tokens.css` генерується з `tokens.json`; `components/bundle.css` бере значення лише через `var()`. Перевірка — скрипт `check.mjs` (кількості, контраст, невжиті токени) і знімки екрана через Playwright. Публікація — НОВИЙ артефакт, наявний `TQjeVTSu3wAjM1U7osC4ia` не змінюється.
+**Architecture:** Файли системи живуть у репозиторії в `design/system/project/` у форматі артефакту Design System (`tokens.json`, `README.md`, `components/…`). `tokens.css` генерується з `tokens.json`; `components/bundle.css` бере значення лише через `var()`. Перевірка — скрипт `check.mjs` (кількості, контраст, невжиті токени) і знімки екрана через Playwright. Публікація — НОВИЙ артефакт, наявний `TQjeVTSu3wAjM1U7osC4ia` не змінюється.
 
 **Tech Stack:** JSON, CSS custom properties, статичний HTML, Node 20 + Playwright (уже встановлені), шрифти woff2 (Geologica, Martian Mono, Science Gothic з наявної системи; Onest з `@fontsource-variable/onest` як кандидат на заміну Geologica).
 
@@ -35,8 +35,8 @@
 ### Task 1: Токени
 
 **Files:**
-- Create: `design/ds-v2/project/tokens.json`, `design/ds-v2/tools/build-tokens.mjs`, `design/ds-v2/tools/check.mjs`
-- Generated: `design/ds-v2/project/tokens.css`
+- Create: `design/system/project/tokens.json`, `design/system/tools/build-tokens.mjs`, `design/system/tools/check.mjs`
+- Generated: `design/system/project/tokens.css`
 
 **Interfaces:**
 - Produces: CSS-змінні `--<name>` для кожного токена; теми через `:root` (світла), `@media (prefers-color-scheme: dark)` і `[data-theme="dark"|"light"]`. Текстові стилі як `--fs-<style>`, `--lh-<style>`, `--fw-<style>`, `--ff-<family>`.
@@ -73,16 +73,16 @@
 - Рух: `dur-fast` .12s, `dur-base` .2s, `ease-out` `cubic-bezier(.32,.72,0,1)`.
 
 - [ ] **Step 1:** Написати `check.mjs`: перевіряє, що кольорів рівно 16, текстових стилів 10, кроків `space-*` 8; контраст (з урахуванням альфи поверх `page`) `ink`/`page` ≥ 12, `ink-2`/`page` ≥ 4.5, `ink-2`/`surface` ≥ 4.5, `olive-ink`/`page` ≥ 4.5, `on-olive`/`olive` ≥ 4.5, `warn`/`page` ≥ 4.5, `danger`/`page` ≥ 4.5, `line-control`/`page` ≥ 3, `ink` на `fill-selected` ≥ 12 — в обох темах; формат `tokens.json` — списки `{name,value,usage}`, кожен токен має `usage`.
-- [ ] **Step 2:** `node design/ds-v2/tools/check.mjs` → FAIL (файлу токенів немає).
+- [ ] **Step 2:** `node design/system/tools/check.mjs` → FAIL (файлу токенів немає).
 - [ ] **Step 3:** Написати `tokens.json` зі значеннями вище і `build-tokens.mjs` (`node build-tokens.mjs` пише `tokens.css`, перший рядок `/* Дронопорт — дизайн-система v2 — generated from tokens.json */`).
-- [ ] **Step 4:** `node design/ds-v2/tools/check.mjs` → `OK`. Якщо пара не проходить контраст — змінити лише світлоту токена, записати нове значення в цю таблицю.
+- [ ] **Step 4:** `node design/system/tools/check.mjs` → `OK`. Якщо пара не проходить контраст — змінити лише світлоту токена, записати нове значення в цю таблицю.
 - [ ] **Step 5:** Commit.
 
 ### Task 2: Стилі компонентів
 
 **Files:**
-- Create: `design/ds-v2/project/components/bundle.css`, `design/ds-v2/project/fonts/*` (копії з v1 + Onest cyrillic, cyrillic-ext, latin, latin-ext)
-- Modify: `design/ds-v2/tools/check.mjs`
+- Create: `design/system/project/components/bundle.css`, `design/system/project/fonts/*` (копії з v1 + Onest cyrillic, cyrillic-ext, latin, latin-ext)
+- Modify: `design/system/tools/check.mjs`
 
 **Interfaces:**
 - Consumes: змінні з Task 1.
@@ -110,7 +110,7 @@
 ### Task 3: Екран каталогу «до / після» (контрольна точка з користувачем)
 
 **Files:**
-- Create: `design/ds-v2/compare/catalog-v2.html`, `design/ds-v2/tools/shoot.mjs`, `design/ds-v2/compare/shots/*.png`
+- Create: `design/system/compare/catalog-v2.html`, `design/system/tools/shoot.mjs`, `design/system/compare/shots/*.png`
 
 **Interfaces:**
 - Consumes: `tokens.css`, `bundle.css`; для «до» — файли v1 зі scratchpad аудиту або з артефакту (лише читання).
@@ -119,14 +119,14 @@
 
 - [ ] **Step 1:** `shoot.mjs`: знімає `catalog-v2.html` у 1440×1100 світлій і темній темі та 390×1600; рахує елементи з видимою межею контрастом > 3 : 1 і друкує число.
 - [ ] **Step 2:** Зібрати `catalog-v2.html`; перемикач `?font=geologica|onest` для порівняння гарнітур.
-- [ ] **Step 3:** `node design/ds-v2/tools/shoot.mjs` → знімки темної й світлої теми 1440×1100 в обох гарнітурах і 390×1600; контрастних меж ≤ 6 (у v1 — 21 відрізок L1+L2); горизонтальної прокрутки на 390px немає.
+- [ ] **Step 3:** `node design/system/tools/shoot.mjs` → знімки темної й світлої теми 1440×1100 в обох гарнітурах і 390×1600; контрастних меж ≤ 6 (у v1 — 21 відрізок L1+L2); горизонтальної прокрутки на 390px немає.
 - [ ] **Step 4:** Переглянути знімки поруч зі знімком еталона й `screen-dark.png` v1; підігнати `page`, `surface`, `fill-selected` темної теми під еталон, повторити `check.mjs`.
 - [ ] **Step 5:** Commit. Показати користувачеві знімки «до / після» і ЗУПИНИТИСЯ до його рішення.
 
 ### Task 4: README (книга бренду) і прев'ю компонентів
 
 **Files:**
-- Create: `design/ds-v2/project/README.md`, `design/ds-v2/project/components/<Name>/{README.md,preview.html}` для Button, Field, TopBar, SectionTree, CatalogTile, DataTable, Requirements, SpecRow, PositionMarker, Stock, TopicTags, Palette, TypeScale, Spacing, Lines, Icons, Cover.
+- Create: `design/system/project/README.md`, `design/system/project/components/<Name>/{README.md,preview.html}` для Button, Field, TopBar, SectionTree, CatalogTile, DataTable, Requirements, SpecRow, PositionMarker, Stock, TopicTags, Palette, TypeScale, Spacing, Lines, Icons, Cover.
 
 - [ ] **Step 1:** README: розділи «Принципи» (одне тло; простір перед лінією; одна олива на екран; обране — відтінком; дані замість реклами; польові умови), «Колір», «Лінії», «Типографіка», «Простір», «Рух», «Іконографія», «Тексти», «Креслення» (де мова креслення дозволена: схеми, розпіновки, специфікація, маркери), Do / Don't. Без назв на кшталт «… Rule».
 - [ ] **Step 2:** Прев'ю: перший рядок `<!-- @dsCard group="…" height=… -->`; розмітка з класів Task 2.
@@ -135,7 +135,7 @@
 
 ### Task 5: Публікація
 
-- [ ] **Step 1:** Після згоди користувача створити НОВИЙ артефакт типу Design System з назвою «Дронопорт — дизайн-система v2» і опублікувати `design/ds-v2/project/` (логотипи й іконки — копією з v1 через `from_url`).
+- [ ] **Step 1:** Після згоди користувача створити НОВИЙ артефакт типу Design System з назвою «Дронопорт — дизайн-система v2» і опублікувати `design/system/project/` (логотипи й іконки — копією з v1 через `from_url`).
 - [ ] **Step 2:** Надіслати посилання; наявні артефакти лишаються без змін.
 
 Поза цим планом: перенесення макетів сторінок сайту на v2 і тема OpenCart — окремі плани після схвалення v2.

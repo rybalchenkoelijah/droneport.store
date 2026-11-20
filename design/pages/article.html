@@ -1,0 +1,95 @@
+<!-- @page title="Як підібрати LiPo до моторів 2207 — Дронопорт" current="a-lipo-2207" -->
+<div class="app">
+<!-- @block side-nav -->
+<main class="main">
+<!-- @block top-bar title="Як підібрати LiPo до моторів 2207" -->
+<div class="scroll"><article class="col">
+<nav class="crumbs" aria-label="Шлях"><a href="index.html">База знань</a><!-- @block icons/chevron-right --><a href="index.html#power">Живлення</a></nav>
+<header class="art-head">
+<h1>Як підібрати LiPo до моторів 2207</h1>
+<p class="art-lead">Кількість банок, ємність, струмовіддача й роз’єм для рами 5 дюймів: що рахувати й на що дивитися на етикетці.</p>
+<p class="art-meta"><span>Оновлено <time datetime="2026-11-18">18.11.2026</time></span><span>6&nbsp;хв читання</span></p>
+<ul class="tags" aria-label="Теги"><li><a class="tag" href="#t-power">Живлення</a></li><li><a class="tag" href="#t-lipo">LiPo</a></li><li><a class="tag" href="#t-5">5 дюймів</a></li></ul>
+</header>
+<div class="prose">
+<p>Мотор <code>2207 1950KV</code> розрахований на шість банок. Акумулятор <code>6S</code> має номінальну напругу 22,2&nbsp;В і 25,2&nbsp;В у повністю зарядженому стані<sup class="fn"><a href="#fn-1" id="fnref-1" aria-label="Виноска 1">1</a></sup>. В умовах <span class="term"><abbr tabindex="0" aria-describedby="term-reb">РЕБ</abbr><span class="term-tip" role="tooltip" id="term-reb">Радіоелектронна боротьба: придушення каналів керування, відео й навігації.</span></span> запас за струмом важить більше, ніж зайва хвилина польоту.</p>
+
+<h2 id="markuvannia">Що відомо з маркування<a class="anchor" href="#markuvannia" aria-label="Посилання на розділ «Що відомо з маркування»"><!-- @block icons/link class="sm" --></a></h2>
+<ul>
+<li><b>Кількість банок:</b> <code>6S</code> — шість послідовно, 3,7&nbsp;В номіналу на кожну.</li>
+<li><b>Ємність:</b> для рами 5 дюймів беруть 1100–1300&nbsp;мА·год.</li>
+<li><b>Струмовіддача:</b> число з літерою C; тривалий струм дорівнює ємності в ампер-годинах, помноженій на C.</li>
+</ul>
+<div class="note" role="note"><b><!-- @block icons/info -->Примітка</b><p>Заявлене число C у різних виробників не порівнюють напряму. Надійніший показник — внутрішній опір банки, виміряний зарядним пристроєм.</p></div>
+
+<h2 id="strum">Рахуємо струм<a class="anchor" href="#strum" aria-label="Посилання на розділ «Рахуємо струм»"><!-- @block icons/link class="sm" --></a></h2>
+<figure class="calc">
+<div class="calc-line"><span class="calc-term"><b>1,3&nbsp;А·год</b><small>ємність</small></span><span class="calc-step"><span class="calc-op">×</span><span class="calc-term"><b>100C</b><small>струмовіддача</small></span></span><span class="calc-step"><span class="calc-op">=</span><span class="calc-term res"><b>130&nbsp;А</b><small>тривалий струм</small></span></span></div>
+<figcaption>Порівняйте результат із піком силової установки й залиште запас 20–30&nbsp;%.</figcaption>
+</figure>
+<p>Під такий розрахунок на рамі 5 дюймів підходить (товари й ціни — приклади):</p>
+<!-- @block product id="p-lipo-1300" name="LiPo 6S 1300 мА·год 100C XT60" sku="LP-6S-1300-100" cat="Акумулятори" stock="Є на складі" price="1&nbsp;640" -->
+<!-- @block product id="p-xt60" name="Роз’єм XT60, пара" sku="XT60-PAIR" cat="Роз’єми" stock="Мало" stock-class="low" price="85" -->
+
+<h2 id="nalashtuvannia">Налаштування попередження<a class="anchor" href="#nalashtuvannia" aria-label="Посилання на розділ «Налаштування попередження»"><!-- @block icons/link class="sm" --></a></h2>
+<div class="note warn" role="note"><b><!-- @block icons/warning -->Технічні вимоги</b><p>Сідайте, коли напруга на банку впаде до 3,5&nbsp;В (21,0&nbsp;В на <code>6S</code>). Для зберігання тримайте 3,8&nbsp;В на банку (22,8&nbsp;В).</p></div>
+<div class="tabs">
+<div class="tablist" role="tablist" aria-label="Прошивка">
+<button class="tab" type="button" role="tab" id="tab-bf" aria-controls="panel-bf" aria-selected="true">Betaflight</button>
+<button class="tab" type="button" role="tab" id="tab-inav" aria-controls="panel-inav" aria-selected="false" tabindex="-1">INAV</button>
+<button class="tab" type="button" role="tab" id="tab-ap" aria-controls="panel-ap" aria-selected="false" tabindex="-1">ArduPilot</button>
+</div>
+<div class="tabpanel" role="tabpanel" id="panel-bf" aria-labelledby="tab-bf" tabindex="0">
+<figure class="codeblock"><!-- @block code lang="Betaflight CLI" --><pre tabindex="0" role="region" aria-label="Код: Betaflight CLI"><code>set vbat_warning_cell_voltage = 350
+set vbat_min_cell_voltage = 330
+save</code></pre></figure>
+</div>
+<div class="tabpanel" role="tabpanel" id="panel-inav" aria-labelledby="tab-inav" tabindex="0" hidden>
+<figure class="codeblock"><!-- @block code lang="INAV CLI" --><pre tabindex="0" role="region" aria-label="Код: INAV CLI"><code>set vbat_warning_cell_voltage = 350
+set vbat_min_cell_voltage = 330
+save</code></pre></figure>
+</div>
+<div class="tabpanel" role="tabpanel" id="panel-ap" aria-labelledby="tab-ap" tabindex="0" hidden>
+<figure class="codeblock"><!-- @block code file="battery.param" lang="Параметри ArduPilot" --><pre tabindex="0" role="region" aria-label="Код: battery.param"><code>BATT_CAPACITY,1300
+BATT_LOW_VOLT,21.0
+BATT_FS_LOW_ACT,2</code></pre></figure>
+</div>
+</div>
+
+<h2 id="pidkliuchennia">Підключення приймача<a class="anchor" href="#pidkliuchennia" aria-label="Посилання на розділ «Підключення приймача»"><!-- @block icons/link class="sm" --></a></h2>
+<div class="tbl-wrap" tabindex="0" role="region" aria-label="Розпіновка: приймач ELRS до польотного контролера"><table class="tbl pinout">
+<caption>Приймач ELRS до польотного контролера, протокол CRSF. Приклад: звіряйтеся зі схемою своєї плати</caption>
+<thead><tr><th scope="col">Вивід приймача</th><th scope="col">Функція</th><th scope="col">Куди й примітка</th></tr></thead>
+<tbody>
+<tr><td class="pin">5V</td><td>Живлення приймача</td><td>Майданчик <code>5V</code> контролера.</td></tr>
+<tr><td class="pin">GND</td><td>Земля</td><td>Майданчик <code>GND</code> поруч з обраним UART.</td></tr>
+<tr><td class="pin">TX</td><td>Дані від приймача до контролера</td><td>До <code>RX</code> обраного UART.</td></tr>
+<tr><td class="pin">RX</td><td>Телеметрія від контролера до приймача</td><td>До <code>TX</code> того самого UART.</td></tr>
+</tbody></table></div>
+<ol class="steps">
+<li><h3>Зніміть пропелери</h3><p>Мотори й живлення перевіряють лише без пропелерів.</p></li>
+<li><h3>Припаяйте чотири дроти за таблицею</h3><p>Спершу землю, останнім живлення.</p></li>
+<li><h3>Підключіть акумулятор і перевірте зв’язок</h3><p>У конфігураторі має з’явитися сигнал приймача.</p></li>
+</ol>
+<div class="note danger" role="note"><b><!-- @block icons/danger -->Небезпечно</b><p>Не заряджайте здутий, пробитий або вм’ятий акумулятор: він може загорітися.</p></div>
+
+<h2 id="pered-vylotom">Перед вильотом<a class="anchor" href="#pered-vylotom" aria-label="Посилання на розділ «Перед вильотом»"><!-- @block icons/link class="sm" --></a></h2>
+<ul class="checks">
+<li><label><input type="checkbox"><span>Пропелери затягнуті, без тріщин і сколів</span></label></li>
+<li><label><input type="checkbox"><span>Акумулятор закріплений, заряд 4,2&nbsp;В на банку</span></label></li>
+<li><label><input type="checkbox"><span>Антени керування й відео прикручені</span></label></li>
+</ul>
+<details class="details"><summary><!-- @block icons/chevron-right class="sm" -->Чому не можна розряджати нижче 3,3 В на банку</summary><div class="details-body"><p>Глибокий розряд руйнує хімію банки, і ємність уже не відновлюється.</p></div></details>
+<div class="files">
+<!-- @block file href="#f1" name="Пам’ятка: перевірки перед вильотом (приклад)" type="PDF" size="240&nbsp;КБ" -->
+</div>
+<section class="footnotes" aria-labelledby="fn-title">
+<h2 id="fn-title">Виноски</h2>
+<ol><li id="fn-1">Для LiHV повний заряд становить 4,35&nbsp;В на банку; такі акумулятори мають окреме маркування.<a class="fn-back" href="#fnref-1" aria-label="Назад до тексту, виноска 1"><!-- @block icons/back class="sm" --></a></li></ol>
+</section>
+</div>
+</article></div>
+<!-- @block search-dock -->
+</main>
+<!-- @block panel-article -->
+</div>

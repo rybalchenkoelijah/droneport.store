@@ -59,3 +59,6 @@
 # ENV
 .env
 .env.docker
+
+# Зібрані макети сторінок: node design/build.mjs
+design/dist/
