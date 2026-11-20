@@ -81,7 +81,7 @@
 ### Task 2: Стилі компонентів
 
 **Files:**
-- Create: `design/ds-v2/project/components/bundle.css`, `design/ds-v2/project/fonts/*` (копії з v1 + Literata cyrillic, cyrillic-ext, latin, latin-ext)
+- Create: `design/ds-v2/project/components/bundle.css`, `design/ds-v2/project/fonts/*` (копії з v1 + Onest cyrillic, cyrillic-ext, latin, latin-ext)
 - Modify: `design/ds-v2/tools/check.mjs`
 
 **Interfaces:**
