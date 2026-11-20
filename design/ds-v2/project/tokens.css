@@ -100,4 +100,4 @@
 .label { font-family: var(--font-text); font-size: 12px; line-height: 20px; font-weight: 520; }
 .mark { font-family: var(--font-mark); font-size: 12.5px; line-height: 1; font-weight: 400; }
 .dwg { font-family: var(--font-mark); font-size: 11px; line-height: 1; font-weight: 400; }
-.wordmark { font-family: var(--font-draw); font-size: 18px; line-height: 20px; font-weight: 900; }
+.wordmark { font-family: var(--font-draw); font-size: 56px; line-height: 0.95; font-weight: 900; }

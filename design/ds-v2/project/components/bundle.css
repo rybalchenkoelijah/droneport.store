@@ -224,7 +224,9 @@ button,input,select,textarea{font:inherit;color:inherit}
 .logo{display:inline-flex;align-items:center;gap:var(--space-8);margin-left:var(--space-4);border-radius:var(--radius-sm);color:var(--text);text-decoration:none}
 .logo-mark{width:var(--logo);height:var(--logo);flex:none}
 .logo-mark rect{fill:var(--brand)}
-.wordmark{font:900 18px/20px var(--font-draw);text-transform:uppercase;letter-spacing:.01em}
+.logo-lockup{height:var(--logo);width:auto;flex:none}
+.logo-lockup rect{fill:var(--brand)}
+.logo-lockup .wm{fill:var(--text)}
 
 /* ---------- кнопки ---------- */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-6);height:var(--control);padding:0 var(--space-12);border:0;border-radius:var(--radius-md);background:var(--fill);color:var(--text);font:435 13px/16px var(--font-text);white-space:nowrap;cursor:pointer;text-decoration:none}
