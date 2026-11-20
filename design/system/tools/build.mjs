@@ -12,11 +12,6 @@ const flat=Object.entries(t).filter(([k,v])=>v&&v.tokens&&!['color','shadow'].in
 css+=`:root {\n${flat.map(x=>`  --${x.name}: ${x.value};`).join('\n')}\n${Object.entries(t.type.families).map(([k,v])=>`  --font-${k}: ${v};`).join('\n')}\n}\n`;
 for(const g of t.type.groups)for(const s of g.styles)css+=`.${s.name} { font-family: var(--font-${s.family??g.family}); font-size: ${s.fontSize}; line-height: ${s.lineHeight}; font-weight: ${s.fontWeight}; }\n`;
 fs.writeFileSync(root+'tokens.css',css);
-// The one file blocks and pages link: tokens + every component style. Fonts come from Google Fonts, so local @font-face is dropped.
-{const bundle=fs.readFileSync(root+'components/bundle.css','utf8').replace(/\/\*[^*]*\*\/\s*@font-face\s*{[^}]*}\s*/g,'').replace(/@font-face\s*{[^}]*}\s*/g,'');
- const fonts='@import url("https://fonts.googleapis.com/css2?family=Geologica:wght@400..600&family=Martian+Mono:wdth,wght@87.5,400..600&display=swap");\n';
- fs.writeFileSync(root+'../droneport.css',fonts+`/* ${t.name}. ЗГЕНЕРОВАНО: node design/build.mjs. Не правити руками: джерело — project/tokens.json і project/components/bundle.css. */\n`+css.split('\n').slice(1).join('\n')+bundle);}
-
 // ---- checks ----
 const errs=[], notes=[];
 const parse=c=>{c=c.trim();if(c[0]==='#'){let h=c.slice(1);if(h.length===3)h=[...h].map(x=>x+x).join('');return [0,2,4].map(i=>parseInt(h.slice(i,i+2),16)).concat(h.length===8?parseInt(h.slice(6),16)/255:1)}const m=c.match(/[\d.]+/g).map(Number);return [m[0],m[1],m[2],m[3]??1]};

@@ -3,7 +3,7 @@ import fs from 'node:fs';import {createRequire} from 'node:module';
 const {chromium}=createRequire(import.meta.url)('playwright');
 const root=new URL('../project/',import.meta.url).pathname, args=process.argv.slice(2);
 const opt=k=>{const i=args.indexOf(k);return i<0?null:args.splice(i,2)[1]};
-const out=opt('--out')||new URL('../../dist/shots',import.meta.url).pathname, w=+(opt('--w')||960);
+const out=opt('--out')||(await import('node:os')).tmpdir()+'/droneport-shots', w=+(opt('--w')||960);
 fs.mkdirSync(out,{recursive:true});
 const comps=args.length?args:fs.readdirSync(root+'components',{withFileTypes:true}).filter(d=>d.isDirectory()).map(d=>d.name);
 const css=fs.readFileSync(root+'tokens.css','utf8')+fs.readFileSync(root+'components/bundle.css','utf8').replace(/@font-face\s*{[^}]*}/g,'');
