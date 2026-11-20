@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<title>Стаття: як підібрати LiPo до моторів 2207</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ds/droneport/tokens.css">
+<link rel="stylesheet" href="ds/droneport/components/bundle.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div class="app" data-theme="{{themeName}}" style="min-height: 100vh">
+<aside class="side"><dc-import name="SideNav" current="article" hint-size="100%,420px"></dc-import></aside>
+<main class="main">
+<dc-import name="TopBar" heading="Як підібрати LiPo до моторів 2207" hint-size="100%,46px"></dc-import>
+<div class="scroll"><div class="col">
+<nav class="crumbs" aria-label="Шлях"><a href="Main.dc.html">База знань</a><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg><a href="Main.dc.html">Живлення</a></nav>
+<header class="art-head">
+<h1>Як підібрати LiPo до моторів 2207</h1>
+<p class="art-lead">Кількість банок, ємність, струмовіддача й роз’єм для рами 5 дюймів: що рахувати й на що дивитися на етикетці.</p>
+<p class="art-meta"><span>Оновлено <time datetime="2026-11-18">18.11.2026</time></span><span>6&nbsp;хв читання</span></p>
+<ul class="tags" aria-label="Теги"><li><a class="tag" href="#t-power">Живлення</a></li><li><a class="tag" href="#t-lipo">LiPo</a></li><li><a class="tag" href="#t-5">5 дюймів</a></li></ul>
+</header>
+<div class="prose">
+<p>Мотор <code>2207 1950KV</code> розрахований на шість банок. Акумулятор <code>6S</code> має номінальну напругу 22,2&nbsp;В і 25,2&nbsp;В у повністю зарядженому стані<sup class="fn"><a href="#fn-1" id="fnref-1" aria-label="Виноска 1">1</a></sup>. В умовах <span class="term"><abbr tabindex="0" aria-describedby="term-reb">РЕБ</abbr><span class="term-tip" role="tooltip" id="term-reb">Радіоелектронна боротьба: придушення каналів керування, відео й навігації.</span></span> запас за струмом важить більше, ніж зайва хвилина польоту.</p>
+<h2 id="markuvannia">Що відомо з маркування<a class="anchor" href="#markuvannia" aria-label="Посилання на розділ «Що відомо з маркування»"><svg class="icon sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M10.5 13.5a4 4 0 0 0 5.7 0l2.8-2.8a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M13.5 10.5a4 4 0 0 0-5.7 0L5 13.3a4 4 0 0 0 5.7 5.7l1-1"/></svg></a></h2>
+<ul>
+<li><b>Кількість банок:</b> <code>6S</code> — шість послідовно, 3,7&nbsp;В номіналу на кожну.</li>
+<li><b>Ємність:</b> для рами 5 дюймів беруть 1100–1300&nbsp;мА·год.</li>
+<li><b>Струмовіддача:</b> число з літерою C; тривалий струм дорівнює ємності в ампер-годинах, помноженій на C.</li>
+</ul>
+<div class="note" role="note"><b><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 11v5M12 7.8v.2"/></svg>Примітка</b><p>Заявлене число C у різних виробників не порівнюють напряму. Надійніший показник — внутрішній опір банки, виміряний зарядним пристроєм.</p></div>
+<h2 id="strum">Рахуємо струм<a class="anchor" href="#strum" aria-label="Посилання на розділ «Рахуємо струм»"><svg class="icon sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M10.5 13.5a4 4 0 0 0 5.7 0l2.8-2.8a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M13.5 10.5a4 4 0 0 0-5.7 0L5 13.3a4 4 0 0 0 5.7 5.7l1-1"/></svg></a></h2>
+<figure class="calc">
+<div class="calc-line"><span class="calc-term"><b>1,3&nbsp;А·год</b><small>ємність</small></span><span class="calc-step"><span class="calc-op">×</span><span class="calc-term"><b>100C</b><small>струмовіддача</small></span></span><span class="calc-step"><span class="calc-op">=</span><span class="calc-term res"><b>130&nbsp;А</b><small>тривалий струм</small></span></span></div>
+<figcaption>Порівняйте результат із піком силової установки й залиште запас 20–30&nbsp;%.</figcaption>
+</figure>
+<p>Під такий розрахунок на рамі 5 дюймів підходить (товари й ціни — приклади):</p>
+<dc-import name="ProductInline" title="LiPo 6S 1300 мА·год 100C XT60" sku="LP-6S-1300-100" category="Акумулятори" price="1 640" availability="in" hint-size="100%,78px"></dc-import>
+<dc-import name="ProductInline" title="Роз’єм XT60, пара" sku="XT60-PAIR" category="Роз’єми" price="85" availability="low" hint-size="100%,78px"></dc-import>
+<h2 id="nalashtuvannia">Налаштування попередження<a class="anchor" href="#nalashtuvannia" aria-label="Посилання на розділ «Налаштування попередження»"><svg class="icon sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M10.5 13.5a4 4 0 0 0 5.7 0l2.8-2.8a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M13.5 10.5a4 4 0 0 0-5.7 0L5 13.3a4 4 0 0 0 5.7 5.7l1-1"/></svg></a></h2>
+<div class="note warn" role="note"><b><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4.5l8.5 15h-17z"/><path d="M12 10v4M12 16.8v.2"/></svg>Технічні вимоги</b><p>Сідайте, коли напруга на банку впаде до 3,5&nbsp;В (21,0&nbsp;В на <code>6S</code>). Для зберігання тримайте 3,8&nbsp;В на банку (22,8&nbsp;В).</p></div>
+<div class="tabs">
+<div class="tablist" role="tablist" aria-label="Прошивка">
+<sc-for list="{{tabs}}" as="tab" hint-placeholder-count="3"><button class="tab" type="button" role="tab" aria-selected="{{tab.selected}}" onClick="{{tab.pick}}">{{tab.label}}</button></sc-for>
+</div>
+<sc-if value="{{isBf}}" hint-placeholder-val="{{true}}"><div class="tabpanel" role="tabpanel"><figure class="codeblock"><figcaption class="codeblock-head"><b></b><span>Betaflight CLI</span><button class="btn ghost" type="button"><svg class="icon sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="10" height="11" rx="2"/><path d="M15 9V6a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg>Копіювати</button></figcaption><pre tabindex="0" role="region" aria-label="Код: Betaflight CLI"><code>set vbat_warning_cell_voltage = 350
+set vbat_min_cell_voltage = 330
+save</code></pre></figure></div></sc-if>
+<sc-if value="{{isInav}}" hint-placeholder-val="{{false}}"><div class="tabpanel" role="tabpanel"><figure class="codeblock"><figcaption class="codeblock-head"><b></b><span>INAV CLI</span><button class="btn ghost" type="button"><svg class="icon sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="10" height="11" rx="2"/><path d="M15 9V6a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg>Копіювати</button></figcaption><pre tabindex="0" role="region" aria-label="Код: INAV CLI"><code>set vbat_warning_cell_voltage = 350
+set vbat_min_cell_voltage = 330
+save</code></pre></figure></div></sc-if>
+<sc-if value="{{isAp}}" hint-placeholder-val="{{false}}"><div class="tabpanel" role="tabpanel"><figure class="codeblock"><figcaption class="codeblock-head"><b>battery.param</b><span>Параметри ArduPilot</span><button class="btn ghost" type="button"><svg class="icon sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="10" height="11" rx="2"/><path d="M15 9V6a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg>Копіювати</button></figcaption><pre tabindex="0" role="region" aria-label="Код: battery.param"><code>BATT_CAPACITY,1300
+BATT_LOW_VOLT,21.0
+BATT_FS_LOW_ACT,2</code></pre></figure></div></sc-if>
+</div>
+<h2 id="pidkliuchennia">Підключення приймача<a class="anchor" href="#pidkliuchennia" aria-label="Посилання на розділ «Підключення приймача»"><svg class="icon sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M10.5 13.5a4 4 0 0 0 5.7 0l2.8-2.8a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M13.5 10.5a4 4 0 0 0-5.7 0L5 13.3a4 4 0 0 0 5.7 5.7l1-1"/></svg></a></h2>
+<div class="tbl-wrap" tabindex="0" role="region" aria-label="Розпіновка: приймач ELRS до польотного контролера"><table class="tbl pinout">
+<caption>Приймач ELRS до польотного контролера, протокол CRSF. Приклад: звіряйтеся зі схемою своєї плати</caption>
+<thead><tr><th scope="col">Вивід приймача</th><th scope="col">Функція</th><th scope="col">Куди й примітка</th></tr></thead>
+<tbody>
+<tr><td class="pin">5V</td><td>Живлення приймача</td><td>Майданчик <code>5V</code> контролера.</td></tr>
+<tr><td class="pin">GND</td><td>Земля</td><td>Майданчик <code>GND</code> поруч з обраним UART.</td></tr>
+<tr><td class="pin">TX</td><td>Дані від приймача до контролера</td><td>До <code>RX</code> обраного UART.</td></tr>
+<tr><td class="pin">RX</td><td>Телеметрія від контролера до приймача</td><td>До <code>TX</code> того самого UART.</td></tr>
+</tbody></table></div>
+<ol class="steps">
+<li><h3>Зніміть пропелери</h3><p>Мотори й живлення перевіряють лише без пропелерів.</p></li>
+<li><h3>Припаяйте чотири дроти за таблицею</h3><p>Спершу землю, останнім живлення.</p></li>
+<li><h3>Підключіть акумулятор і перевірте зв’язок</h3><p>У конфігураторі має з’явитися сигнал приймача.</p></li>
+</ol>
+<div class="note danger" role="note"><b><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 4h7L20 8.5v7L15.5 20h-7L4 15.5v-7z"/><path d="M12 8v5M12 15.8v.2"/></svg>Небезпечно</b><p>Не заряджайте здутий, пробитий або вм’ятий акумулятор: він може загорітися.</p></div>
+<h2 id="pered-vylotom">Перед вильотом<a class="anchor" href="#pered-vylotom" aria-label="Посилання на розділ «Перед вильотом»"><svg class="icon sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M10.5 13.5a4 4 0 0 0 5.7 0l2.8-2.8a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M13.5 10.5a4 4 0 0 0-5.7 0L5 13.3a4 4 0 0 0 5.7 5.7l1-1"/></svg></a></h2>
+<ul class="checks">
+<li><label><input id="c1" type="checkbox"><span>Пропелери затягнуті, без тріщин і сколів</span></label></li>
+<li><label><input id="c2" type="checkbox"><span>Акумулятор закріплений, заряд 4,2&nbsp;В на банку</span></label></li>
+<li><label><input id="c3" type="checkbox"><span>Антени керування й відео прикручені</span></label></li>
+</ul>
+<details class="details"><summary><svg class="icon sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>Чому не можна розряджати нижче 3,3 В на банку</summary><div class="details-body"><p>Глибокий розряд руйнує хімію банки, і ємність уже не відновлюється.</p></div></details>
+<div class="files">
+<a class="file" href="#f1"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3.5h7l4 4v13H7z"/><path d="M14 3.5v4h4"/></svg><span><b>Пам’ятка: перевірки перед вильотом (приклад)</b><small><code>PDF</code> · 240&nbsp;КБ</small></span><em>Завантажити</em><svg class="icon sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7.5 11l4.5 4.5 4.5-4.5M5 19.5h14"/></svg></a>
+</div>
+<section class="footnotes" aria-labelledby="fn-title">
+<h2 id="fn-title">Виноски</h2>
+<ol><li id="fn-1">Для LiHV повний заряд становить 4,35&nbsp;В на банку; такі акумулятори мають окреме маркування.<a class="fn-back" href="#fnref-1" aria-label="Назад до тексту, виноска 1"><svg class="icon sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 14l-4-4 4-4"/><path d="M5 10h9a5 5 0 0 1 0 10h-3"/></svg></a></li></ol>
+</section>
+</div>
+</div></div>
+<dc-import name="SearchDock" hint-size="100%,84px"></dc-import>
+</main>
+<aside class="panel"><dc-import name="PanelToc" hint-size="100%,290px"></dc-import><dc-import name="PanelCart" hint-size="100%,190px"></dc-import></aside>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "$preview": {"width": 1440, "height": 2700}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const themeName = (this.props.theme ?? 'dark') === 'light' ? 'light' : 'dark';
+    const fw = (this.state && this.state.fw) || 'bf';
+    const tabs = [['bf', 'Betaflight'], ['inav', 'INAV'], ['ap', 'ArduPilot']].map(([id, label]) => ({ label, selected: fw === id ? 'true' : 'false', pick: () => this.setState({ fw: id }) }));
+    const vals = { themeName, tabs, isBf: fw === 'bf', isInav: fw === 'inav', isAp: fw === 'ap' };
+    return vals;
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<title>Каталог: акумулятори</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ds/droneport/tokens.css">
+<link rel="stylesheet" href="ds/droneport/components/bundle.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div class="app" data-theme="{{themeName}}" style="min-height: 100vh">
+<aside class="side"><dc-import name="SideNav" current="catalog" hint-size="100%,420px"></dc-import></aside>
+<main class="main">
+<dc-import name="TopBar" heading="Акумулятори" hint-size="100%,46px"></dc-import>
+<div class="scroll"><div class="col">
+<nav class="crumbs" aria-label="Шлях"><a href="Catalog.dc.html">Каталог</a><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg><span aria-current="page">Акумулятори</span></nav>
+<header class="art-head">
+<h1>Акумулятори</h1>
+<p class="art-meta"><span>5 товарів</span><span>Ціни оновлено <time datetime="2026-11-20">20.11.2026</time></span></p>
+</header>
+<div class="chips" role="group" aria-label="Кількість банок">
+<button class="chip" type="button" aria-pressed="false">4S</button>
+<button class="chip" type="button" aria-pressed="true">6S</button>
+<button class="chip" type="button" aria-pressed="false">8S</button>
+<button class="chip" type="button" aria-pressed="false">Лише в наявності</button>
+</div>
+<div class="items">
+<div class="item"><span><b>LiPo 6S 1300 мА·год 100C XT60</b><small><code>LP-6S-1300-100</code> · 5 дюймів</small></span><span class="stock">Є на складі</span><span class="price num">1&nbsp;640&nbsp;₴</span><button class="btn" type="button">У кошик</button></div>
+<div class="item"><span><b>LiPo 6S 1100 мА·год 120C XT60</b><small><code>LP-6S-1100-120</code> · 5 дюймів</small></span><span class="stock">Є на складі</span><span class="price num">1&nbsp;520&nbsp;₴</span><button class="btn" type="button">У кошик</button></div>
+<div class="item"><span><b>LiPo 6S 2200 мА·год 75C XT60</b><small><code>LP-6S-2200-75</code> · 7 дюймів</small></span><span class="stock low">Мало</span><span class="price num">1&nbsp;890&nbsp;₴</span><button class="btn" type="button">У кошик</button></div>
+<div class="item"><span><b>Li-Ion 6S1P 21700 4000 мА·год XT60</b><small><code>LI-6S1P-4000</code> · 7 дюймів, дальній політ</small></span><span class="stock">Є на складі</span><span class="price num">2&nbsp;150&nbsp;₴</span><button class="btn" type="button">У кошик</button></div>
+</div>
+<div class="prose">
+<h2>Немає в нашому магазині</h2>
+<div class="product off">
+  <div class="product-main"><span class="plate sm" aria-hidden="true"></span><span><a class="product-name" href="#p-li">Li-Ion 6S2P 21700 8000 мА·год</a><small><code>LI-6S2P-8000</code> · 10 дюймів</small></span></div>
+  <div class="product-buy"><span class="stock none">Немає в нашому магазині</span><a class="btn" href="#prom">Шукати на Prom<svg class="icon sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 5h5v5M19 5l-8 8M11 6H6v12h12v-5"/></svg></a></div>
+</div>
+<h2>Статті про акумулятори</h2>
+</div>
+<div class="items">
+<a class="item two" href="Article.dc.html"><span><b>Як підібрати LiPo до моторів 2207</b><small>Живлення</small></span><small class="num">6&nbsp;хв</small></a>
+<a class="item two" href="#a-lipo-winter"><span><b>Зберігання LiPo взимку</b><small>Живлення</small></span><small class="num">4&nbsp;хв</small></a>
+</div>
+<p class="empty">Товари, артикули й ціни на цій сторінці — приклади.</p>
+</div></div>
+<dc-import name="SearchDock" hint-size="100%,84px"></dc-import>
+</main>
+<aside class="panel"><dc-import name="PanelCart" hint-size="100%,190px"></dc-import></aside>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "$preview": {"width": 1440, "height": 1000}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return { themeName: (this.props.theme ?? 'dark') === 'light' ? 'light' : 'dark' };
+  }
+}
+</script>
+</body>
+</html>

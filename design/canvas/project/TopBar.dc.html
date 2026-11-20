@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<title>Блок: верхня смуга</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ds/droneport/tokens.css">
+<link rel="stylesheet" href="ds/droneport/components/bundle.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div class="bar"><button class="ib" type="button" aria-label="Меню"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="14" rx="2.5"/><path d="M9 5v14"/></svg></button><span class="bar-title">{{heading}}</span><span class="sp"></span><button class="ib" type="button" aria-label="Змінити тему"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 4v16M12 8.5l6-2.2M12 12h8M12 15.5l6 2.2"/></svg></button><button class="ib" type="button" aria-pressed="true" aria-label="Права панель"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="14" rx="2.5"/><path d="M15 5v14"/></svg></button></div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"heading": {"editor": "text", "default": "База знань"}, "$preview": {"width": 1100, "height": 46}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return { heading: this.props.heading ?? 'База знань' };
+  }
+}
+</script>
+</body>
+</html>

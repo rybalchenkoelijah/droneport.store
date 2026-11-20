@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<title>База знань</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ds/droneport/tokens.css">
+<link rel="stylesheet" href="ds/droneport/components/bundle.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div class="app nopanel" data-theme="{{themeName}}" style="min-height: 100vh">
+<aside class="side"><dc-import name="SideNav" current="kb" hint-size="100%,420px"></dc-import></aside>
+<main class="main">
+<dc-import name="TopBar" heading="База знань" hint-size="100%,46px"></dc-import>
+<div class="scroll"><div class="col">
+<header class="art-head">
+<h1>База знань</h1>
+<p class="art-lead">Інструкції з підбору, паяння й налаштування комплектуючих. Кожна стаття має дату оновлення й посилається на товари з каталогу.</p>
+</header>
+<div class="prose"><h2>Живлення</h2></div>
+<div class="items">
+<a class="item two" href="Article.dc.html"><span><b>Як підібрати LiPo до моторів 2207</b><small>Акумулятори · оновлено 18.11.2026</small></span><small class="num">6&nbsp;хв</small></a>
+<a class="item two" href="#a-lipo-winter"><span><b>Зберігання LiPo взимку</b><small>Акумулятори · оновлено 02.11.2026</small></span><small class="num">4&nbsp;хв</small></a>
+<a class="item two" href="#a-xt"><span><b>Роз’єми XT30, XT60, XT90</b><small>Роз’єми · оновлено 27.10.2026</small></span><small class="num">3&nbsp;хв</small></a>
+</div>
+<div class="prose"><h2>Зв’язок</h2></div>
+<div class="items">
+<a class="item two" href="#a-vtx"><span><b>Таблиця частот відеопередавачів 5,8&nbsp;ГГц</b><small>Відео · оновлено 02.10.2026</small></span><small class="num">2&nbsp;хв</small></a>
+<a class="item two" href="#a-elrs"><span><b>Підключення приймача ELRS до польотного контролера</b><small>Керування · оновлено 21.09.2026</small></span><small class="num">5&nbsp;хв</small></a>
+</div>
+<div class="prose"><h2>З каталогу</h2></div>
+<div class="items">
+<div class="item"><span><b>LiPo 6S 1300 мА·год 100C XT60</b><small><code>LP-6S-1300-100</code> · Акумулятори</small></span><span class="stock">Є на складі</span><span class="price num">1&nbsp;640&nbsp;₴</span><button class="btn" type="button">У кошик</button></div>
+<div class="item"><span><b>T-Motor F60 Pro V 2207 1950KV</b><small><code>TM-F60V-1950</code> · Мотори</small></span><span class="stock low">Мало</span><span class="price num">1&nbsp;380&nbsp;₴</span><button class="btn" type="button">У кошик</button></div>
+</div>
+<p><a class="link" href="Catalog.dc.html">Увесь каталог</a></p>
+</div></div>
+<dc-import name="SearchDock" hint-size="100%,84px"></dc-import>
+</main>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "$preview": {"width": 1440, "height": 900}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return { themeName: (this.props.theme ?? 'dark') === 'light' ? 'light' : 'dark' };
+  }
+}
+</script>
+</body>
+</html>

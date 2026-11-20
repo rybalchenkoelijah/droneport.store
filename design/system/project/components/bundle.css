@@ -219,7 +219,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 
 /* ---------- верхня смуга ---------- */
 .bar{display:flex;align-items:center;gap:var(--space-4);height:var(--bar);padding:0 var(--space-8);flex:none}
-.main>.bar{padding-left:var(--space-16);border-bottom:var(--line-w) solid var(--line)}
+.main>.bar,.main>*>.bar{padding-left:var(--space-16);border-bottom:var(--line-w) solid var(--line)}
 .bar .sp{flex:1}
 .bar-title{min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;font-size:14px;font-weight:435}
 .logo{display:inline-flex;align-items:center;gap:var(--space-8);margin-left:var(--space-4);border-radius:var(--radius-sm);color:var(--text);text-decoration:none}
@@ -377,7 +377,7 @@ kbd{display:inline-grid;place-items:center;min-width:20px;height:20px;padding:0 
 
 /* ---------- права панель ---------- */
 .sec{padding:var(--space-12) var(--space-12) var(--space-8)}
-.sec+.sec{border-top:var(--line-w) solid var(--line)}
+.sec+.sec,.panel>*+*>.sec:first-child{border-top:var(--line-w) solid var(--line)}
 .sec>h2,.sec>h3{display:flex;align-items:center;gap:var(--space-4);margin-bottom:var(--space-8);font:435 13px/16px var(--font-text)}
 .sec>h2 small,.sec>h3 small{margin-left:auto;color:var(--text-2);font-weight:400}
 .kv{display:flex;align-items:center;gap:var(--space-8);min-height:var(--control)}
@@ -439,7 +439,7 @@ a.pos:hover,a.pos:focus-visible{background:var(--fill-strong)}
   .app.drawer>.side{transform:none}
   .app.drawer>.scrim{display:block;position:fixed;inset:0;z-index:4;border:0;background:var(--scrim)}
   .main{display:block}
-  .main>.bar{position:sticky;top:0;z-index:2;background:var(--bg)}
+  .main>.bar,.main>*>.bar{position:sticky;top:0;z-index:2;background:var(--bg)}
   .scroll{overflow:visible}
   .col{padding:var(--space-16)}
   .dock{position:sticky;bottom:0;padding:var(--space-8) var(--space-16)}

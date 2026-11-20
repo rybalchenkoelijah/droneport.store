@@ -1,0 +1,169 @@
+{
+ "v": 3,
+ "createdOnFiles": {
+  "v": 1,
+  "at": "2026-11-20T15:18:02Z"
+ },
+ "title": "Дронопорт — сторінки",
+ "launch": {
+  "view": "canvas",
+  "page": "pages"
+ },
+ "pages": [
+  {
+   "id": "pages",
+   "name": "Сторінки"
+  },
+  {
+   "id": "blocks",
+   "name": "Блоки"
+  }
+ ],
+ "boards": {
+  "Main.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 1440,
+   "h": 900,
+   "title": "База знань — темна",
+   "page": "pages",
+   "expand": "fill"
+  },
+  "MainLight.dc.html": {
+   "x": 1520,
+   "y": 0,
+   "w": 1440,
+   "h": 900,
+   "title": "База знань — світла",
+   "page": "pages",
+   "expand": "fill"
+  },
+  "Article.dc.html": {
+   "x": 0,
+   "y": 1020,
+   "w": 1440,
+   "h": 2700,
+   "title": "Стаття — темна",
+   "page": "pages",
+   "expand": "fill",
+   "is_interactive": true
+  },
+  "ArticleLight.dc.html": {
+   "x": 1520,
+   "y": 1020,
+   "w": 1440,
+   "h": 2700,
+   "title": "Стаття — світла",
+   "page": "pages",
+   "expand": "fill",
+   "is_interactive": true
+  },
+  "Catalog.dc.html": {
+   "x": 0,
+   "y": 3840,
+   "w": 1440,
+   "h": 1000,
+   "title": "Каталог — темна",
+   "page": "pages",
+   "expand": "fill"
+  },
+  "CatalogLight.dc.html": {
+   "x": 1520,
+   "y": 3840,
+   "w": 1440,
+   "h": 1000,
+   "title": "Каталог — світла",
+   "page": "pages",
+   "expand": "fill"
+  },
+  "SideNav.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 288,
+   "h": 420,
+   "title": "Блок: ліва панель",
+   "page": "blocks"
+  },
+  "TopBar.dc.html": {
+   "x": 368,
+   "y": 0,
+   "w": 1100,
+   "h": 46,
+   "title": "Блок: верхня смуга",
+   "page": "blocks"
+  },
+  "SearchDock.dc.html": {
+   "x": 368,
+   "y": 166,
+   "w": 820,
+   "h": 84,
+   "title": "Блок: пошук",
+   "page": "blocks"
+  },
+  "ProductInline.dc.html": {
+   "x": 368,
+   "y": 370,
+   "w": 768,
+   "h": 78,
+   "title": "Блок: товар у тексті",
+   "page": "blocks"
+  },
+  "PanelToc.dc.html": {
+   "x": 1548,
+   "y": 0,
+   "w": 320,
+   "h": 290,
+   "title": "Блок: зміст і товари статті",
+   "page": "blocks"
+  },
+  "PanelCart.dc.html": {
+   "x": 1548,
+   "y": 410,
+   "w": 320,
+   "h": 190,
+   "title": "Блок: кошик",
+   "page": "blocks"
+  }
+ },
+ "order": [
+  "Main.dc.html",
+  "MainLight.dc.html",
+  "Article.dc.html",
+  "ArticleLight.dc.html",
+  "Catalog.dc.html",
+  "CatalogLight.dc.html",
+  "SideNav.dc.html",
+  "TopBar.dc.html",
+  "SearchDock.dc.html",
+  "ProductInline.dc.html",
+  "PanelToc.dc.html",
+  "PanelCart.dc.html"
+ ],
+ "notes": {
+  "t1": {
+   "x": 0,
+   "y": -300,
+   "text": "Сторінки: зібрані з блоків і дизайн-системи",
+   "kind": "title1",
+   "maxW": 2960,
+   "page": "pages"
+  },
+  "t2": {
+   "x": 0,
+   "y": -300,
+   "text": "Блоки: зміна тут видна на всіх сторінках",
+   "kind": "title1",
+   "maxW": 1868,
+   "page": "blocks"
+  }
+ },
+ "designSystems": [
+  {
+   "title": "Дронопорт — дизайн-система",
+   "namespace": "droneport",
+   "artifact": "https://claude.ai/artifact/LXQ5gTmG5rreQGV93rwJnZ",
+   "version": "1795187910-3081",
+   "copiedAt": "2026-11-20T15:18:02Z"
+  }
+ ]
+}

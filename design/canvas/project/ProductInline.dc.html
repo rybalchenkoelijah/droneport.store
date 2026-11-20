@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<title>Блок: товар у тексті статті</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ds/droneport/tokens.css">
+<link rel="stylesheet" href="ds/droneport/components/bundle.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div class="product">
+  <div class="product-main"><span class="plate sm" aria-hidden="true"></span><span><a class="product-name" href="#product">{{title}}</a><small><code>{{sku}}</code> · {{category}}</small></span></div>
+  <div class="product-buy"><span class="{{stockClass}}">{{stock}}</span><span class="price num">{{price}}&nbsp;₴</span><button class="btn" type="button">У кошик</button></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"title": {"editor": "text", "default": "LiPo 6S 1300 мА·год 100C XT60"}, "sku": {"editor": "text", "default": "LP-6S-1300-100"}, "category": {"editor": "text", "default": "Акумулятори"}, "price": {"editor": "text", "default": "1 640"}, "availability": {"editor": "enum", "options": ["in", "low"], "default": "in"}, "$preview": {"width": 768, "height": 78}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const p = this.props, low = (p.availability ?? 'in') === 'low';
+    return { title: p.title ?? 'LiPo 6S 1300 мА·год 100C XT60', sku: p.sku ?? 'LP-6S-1300-100', category: p.category ?? 'Акумулятори', price: p.price ?? '1 640', stock: low ? 'Мало' : 'Є на складі', stockClass: low ? 'stock low' : 'stock' };
+  }
+}
+</script>
+</body>
+</html>
