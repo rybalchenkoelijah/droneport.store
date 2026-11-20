@@ -1,6 +1,8 @@
 <!-- PROTOTYPE, throwaway. Interactive knowledge base + catalogue in a shell that ports the Claude app layout, sizes and spacing (measured from a live session). Sample text and data. -->
 <title>Дронопорт стаття прототип</title>
 <meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geologica:wght@400;500;600&family=Martian+Mono:wdth,wght@87.5,400..600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Science+Gothic:slnt,wdth,wght@-10..0,50..200,100..900&display=swap">
 <style>
 /* Layout and values measured from a live Claude Code session (light theme, 2026-11-20): sidebar 288, right panel 320, header 45, rows 32, prose 15/21, measure 768. Dark values are mirrored, not measured. */
 :root{
@@ -214,6 +216,97 @@ mark{background:rgba(251,179,21,.33);color:inherit;border-radius:2px}
   .item{grid-template-columns:minmax(0,1fr) auto auto}.item .stock{display:none}
 }
 @media (prefers-reduced-motion:no-preference){.side{transition:transform .2s cubic-bezier(.32,.72,0,1)}}
+/* ---- variant switcher (prototype chrome, not part of any variant) ---- */
+.main{position:relative}
+.status{align-items:center}
+.skins{margin-right:auto;display:flex;gap:2px;padding:2px;border-radius:999px;background:#191919;font:500 12px/1 system-ui,sans-serif;box-shadow:0 2px 10px rgba(0,0,0,.25)}
+.skins button{height:24px;padding:0 12px;border:0;border-radius:999px !important;background:none;color:#fff;opacity:.7;cursor:pointer;font:inherit}
+.skins button:hover{opacity:1}
+.skins button[aria-pressed="true"]{background:#fff;color:#191919;opacity:1}
+/* figure shared */
+.fig{margin:0 0 12px;display:grid;gap:8px}
+.fig svg{width:100%;max-width:340px;height:auto;stroke:none;fill:none}
+.fig .c{stroke:var(--text);stroke-width:1.4;fill:none}
+.fig .dwg{display:none}
+.fig figcaption{color:var(--text-2);font-size:13px}
+.poslist{margin:0 0 12px}
+.poslist li{display:flex;gap:10px;align-items:center;padding:8px 0;border-bottom:1px solid var(--border)}
+.pos{display:none;place-items:center;width:22px;height:22px;border:1px solid var(--text);border-radius:50% !important;font:400 11px/1 var(--mono);flex:none}
+.poslist li.hot{background:var(--hover)}
+
+/* ---- Суміжний: Claude shell + own type, olive and drawing conventions ---- */
+:root[data-skin="hybrid"]{--sans:"Geologica",system-ui,sans-serif;--mono:"Martian Mono",ui-monospace,monospace;--primary:#5C6A30;--on-primary:#FFFFFF;--link:#4F5A2A}
+@media (prefers-color-scheme:dark){:root[data-skin="hybrid"]:not([data-theme="light"]){--primary:#8A9A52;--on-primary:#0E100C;--link:#B4C47A}}
+:root[data-skin="hybrid"][data-theme="dark"]{--primary:#8A9A52;--on-primary:#0E100C;--link:#B4C47A}
+:root[data-skin="hybrid"] .brand,:root[data-skin="mine"] .brand{font:900 18px/20px "Science Gothic","Arial Narrow",sans-serif;text-transform:uppercase;letter-spacing:.01em}
+:root[data-skin="hybrid"] code,:root[data-skin="mine"] code{font-size:.82em;font-stretch:87.5%}
+:root[data-skin="hybrid"] :focus-visible,:root[data-skin="mine"] :focus-visible{outline:2px solid var(--link);outline-offset:2px;box-shadow:none}
+:root[data-skin="hybrid"] .fig .dwg,:root[data-skin="mine"] .fig .dwg{display:inline}
+:root[data-skin="hybrid"] .fig .c,:root[data-skin="mine"] .fig .c{stroke-width:2}
+:root[data-skin="hybrid"] .fig .ax,:root[data-skin="mine"] .fig .ax{stroke:var(--text-2);stroke-width:1;stroke-dasharray:10 4 2 4}
+:root[data-skin="hybrid"] .fig .dm,:root[data-skin="mine"] .fig .dm{stroke:var(--text-2);stroke-width:1}
+:root[data-skin="hybrid"] .fig text,:root[data-skin="mine"] .fig text{fill:var(--text);font:400 11px var(--mono);stroke:none}
+:root[data-skin="hybrid"] .fig .mk,:root[data-skin="mine"] .fig .mk{stroke:var(--text);stroke-width:1;fill:var(--bg)}
+:root[data-skin="hybrid"] .pos,:root[data-skin="mine"] .pos{display:grid}
+
+/* ---- Мій: «Креслення ЄСКД» applied to the same screen ---- */
+:root[data-skin="mine"]{--desk:#E9EBE7;--rule:#14161A;--bg:#FFFFFF;--side:#FFFFFF;--raised:#FFFFFF;--text:#14161A;--text-2:#4A4E55;--text-3:#4A4E55;--border:#C9CCC8;--ring:#14161A;--hover:#14161A0F;--selected:#14161A17;--chip:transparent;--card:transparent;--primary:#5C6A30;--on-primary:#FFFFFF;--link:#4F5A2A;--accent:#5C6A30;--on-accent:#FFFFFF;--shadow:0 0 0 0 transparent;--sans:"Geologica",system-ui,sans-serif;--mono:"Martian Mono",ui-monospace,monospace}
+@media (prefers-color-scheme:dark){:root[data-skin="mine"]:not([data-theme="light"]){--desk:#0B0C0E;--rule:#C9CDC4;--bg:#121417;--side:#121417;--raised:#121417;--text:#E4E6E1;--text-2:#A3A8A0;--text-3:#A3A8A0;--border:#2E3236;--ring:#C9CDC4;--hover:#E4E6E10F;--selected:#E4E6E117;--primary:#8A9A52;--on-primary:#0E100C;--link:#B4C47A;--accent:#8A9A52;--on-accent:#0E100C}}
+:root[data-skin="mine"][data-theme="dark"]{--desk:#0B0C0E;--rule:#C9CDC4;--bg:#121417;--side:#121417;--raised:#121417;--text:#E4E6E1;--text-2:#A3A8A0;--text-3:#A3A8A0;--border:#2E3236;--ring:#C9CDC4;--hover:#E4E6E10F;--selected:#E4E6E117;--primary:#8A9A52;--on-primary:#0E100C;--link:#B4C47A;--accent:#8A9A52;--on-accent:#0E100C}
+:root[data-skin="mine"] *{border-radius:0 !important}
+:root[data-skin="mine"] .stock i,:root[data-skin="mine"] .ava{border-radius:50% !important}
+:root[data-skin="mine"] body{background:var(--desk);font-size:15px;line-height:22px;background-image:linear-gradient(var(--border) 50%,transparent 0);background-size:1px 8px;background-repeat:repeat-y;background-position:28px 0}
+:root[data-skin="mine"] body{padding:12px 12px 12px 46px}
+:root[data-skin="mine"] .app{border:2px solid var(--rule);background:var(--bg)}
+:root[data-skin="mine"] .side,:root[data-skin="mine"] .panel{border-color:var(--rule)}
+:root[data-skin="mine"] .main .bar,:root[data-skin="mine"] .side .bar{border-bottom:1px solid var(--rule);height:58px}
+:root[data-skin="mine"] .panel section+section,:root[data-skin="mine"] .user{border-top:1px solid var(--rule)}
+:root[data-skin="mine"] .side nav,:root[data-skin="mine"] .list{padding:0}
+:root[data-skin="mine"] .side nav{border-bottom:1px solid var(--rule)}
+:root[data-skin="mine"] .row{height:44px;margin:0;padding:0 16px;border-bottom:1px solid var(--border);font-weight:500}
+:root[data-skin="mine"] .list .row{padding-left:40px;font-weight:400}
+:root[data-skin="mine"] .row[aria-current]{background:var(--text);color:var(--bg)}
+:root[data-skin="mine"] .row[aria-current] svg,:root[data-skin="mine"] .row[aria-current] .tail{color:var(--bg)}
+:root[data-skin="mine"] .grp{height:44px;margin:0;padding:0 16px;font-size:15px;font-weight:600;color:var(--text);border-bottom:1px solid var(--border);justify-content:space-between}
+:root[data-skin="mine"] .ib{width:44px;height:44px}
+:root[data-skin="mine"] .ib[aria-pressed="true"]{background:var(--text);color:var(--bg)}
+:root[data-skin="mine"] .title b{font:600 20px/1 "Science Gothic","Arial Narrow",sans-serif;font-stretch:80%}
+:root[data-skin="mine"] .col{max-width:840px;padding:28px 48px 40px}
+:root[data-skin="mine"] article{font-size:17px;line-height:1.65}
+:root[data-skin="mine"] article h1{font:600 52px/1.02 "Science Gothic","Arial Narrow",sans-serif;font-stretch:75%;font-style:oblique 10deg;font-variation-settings:"slnt" -10;margin:8px 0 24px;text-wrap:balance}
+:root[data-skin="mine"] article h2{font:600 26px/1.25 var(--sans);margin:36px 0 14px}
+:root[data-skin="mine"] article p,:root[data-skin="mine"] article ul,:root[data-skin="mine"] article ol{margin-bottom:18px}
+:root[data-skin="mine"] .meta{font-size:14px}
+:root[data-skin="mine"] .note{border:1px solid var(--rule);padding:16px 20px}
+:root[data-skin="mine"] .tbl{border:1px solid var(--rule);font-size:15px}
+:root[data-skin="mine"] .tbl th{border-bottom:1px solid var(--rule);padding:10px 12px;color:var(--text-2)}
+:root[data-skin="mine"] .tbl td{padding:10px 12px}
+:root[data-skin="mine"] .tbl td:last-child,:root[data-skin="mine"] .tbl th:last-child{padding-right:12px}
+:root[data-skin="mine"] .btn,:root[data-skin="mine"] .chips button{height:44px;padding:0 16px;background:none;border:1px solid var(--rule);font-size:15px;font-weight:500}
+:root[data-skin="mine"] .btn:hover,:root[data-skin="mine"] .chips button:hover{background:var(--hover)}
+:root[data-skin="mine"] .btn.primary,:root[data-skin="mine"] .cta{height:44px;background:var(--primary);color:var(--on-primary);border:0;font-size:15px;font-weight:600}
+:root[data-skin="mine"] .chips button[aria-pressed="true"]{background:var(--text);color:var(--bg)}
+:root[data-skin="mine"] .composer{border:1px solid var(--rule);box-shadow:none;min-height:48px}
+:root[data-skin="mine"] .composer:focus-within{box-shadow:none;outline:2px solid var(--link);outline-offset:2px}
+:root[data-skin="mine"] .go{width:32px;height:32px}
+:root[data-skin="mine"] .panel h2{font:600 17px/1.2 "Science Gothic","Arial Narrow",sans-serif;font-stretch:80%;margin-bottom:12px}
+:root[data-skin="mine"] .panel h2 small{font:400 12px var(--mono)}
+:root[data-skin="mine"] .panel section{padding:16px 20px 14px}
+:root[data-skin="mine"] .kv,:root[data-skin="mine"] .buy{min-height:40px;border-bottom:1px solid var(--border)}
+:root[data-skin="mine"] .item{margin:0;padding:10px 0;border-bottom:1px solid var(--border);box-shadow:none}
+:root[data-skin="mine"] .price,:root[data-skin="mine"] .big,:root[data-skin="mine"] .buy small,:root[data-skin="mine"] .user small{font-family:var(--mono);font-weight:600}
+:root[data-skin="mine"] .big{font-size:32px;line-height:1.1}
+:root[data-skin="mine"] .track{height:2px;background:var(--border)}
+:root[data-skin="mine"] .toc i{border:1px solid var(--rule);background:none}
+:root[data-skin="mine"] .toc a.on i{background:var(--text)}
+:root[data-skin="mine"] mark{background:#D8DFC0;color:#14161A}
+@media (max-width:760px){
+  .status{display:flex;margin-top:8px} .status>span{display:none} .skins{margin:0 auto}
+  :root[data-skin="mine"] body{background-image:none}
+  :root[data-skin="mine"] body{padding:8px}
+  :root[data-skin="mine"] .col{padding:20px 16px 32px}
+  :root[data-skin="mine"] article h1{font-size:36px}
+}
 </style>
 
 <div class="app" id="app">
@@ -228,7 +321,7 @@ mark{background:rgba(251,179,21,.33);color:inherit;border-radius:2px}
         <input id="q" type="search" autocomplete="off" placeholder="Пошук: назва, артикул або параметр. Клавіша /" aria-label="Пошук у базі знань і каталозі">
         <button class="go" aria-label="Шукати"><svg viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button>
       </form>
-      <div class="status"><span id="live" aria-live="polite"></span><span><b>База знань</b> · 12 статей</span><span>Каталог · 8 товарів</span></div>
+      <div class="status"><div class="skins" role="group" aria-label="Варіант дизайну"><button data-act="skin" data-id="claude">Claude</button><button data-act="skin" data-id="hybrid">Суміжний</button><button data-act="skin" data-id="mine">Мій</button></div><span id="live" aria-live="polite"></span><span><b>База знань</b> · 12 статей</span><span>Каталог · 8 товарів</span></div>
     </div>
   </div>
   <aside class="panel" id="panel" aria-label="Додатково"></aside>
@@ -253,12 +346,21 @@ const P={
  'lipo-1300':{n:'LiPo 6S 1300 мА·год 100C XT60',sku:'LP-6S-1300-100',p:1180,s:'in',c:'Акумулятори',sp:[['Кількість банок','6S'],['Номінальна напруга','22,2 В'],['Ємність','1300 мА·год'],['Роз’єм','XT60'],['Маса','212 г']]},
  'lipo-2200':{n:'LiPo 6S 2200 мА·год 75C XT60',sku:'LP-6S-2200-75',p:1890,s:'low',c:'Акумулятори',sp:[['Кількість банок','6S'],['Номінальна напруга','22,2 В'],['Ємність','2200 мА·год'],['Роз’єм','XT60'],['Маса','338 г']]},
  'liion-8000':{n:'Li-Ion 6S2P 21700 8000 мА·год',sku:'LI-6S2P-8000',p:4350,s:'none',c:'Акумулятори',sp:[['Схема','6S2P'],['Номінальна напруга','21,6 В'],['Ємність','8000 мА·год'],['Роз’єм','XT60']]},
- 'f60':{n:'T-Motor F60 Pro V 2207 1950KV',sku:'TM-F60V-1950',p:1380,s:'in',c:'Мотори',sp:[['Статор','2207'],['Оберти на вольт','1950KV'],['Маса з дротами','32,5 г'],['Живлення','6S'],['Кріплення','16 × 16 мм, М3']]},
+ 'f60':{n:'T-Motor F60 Pro V 2207 1950KV',sku:'TM-F60V-1950',p:1380,s:'in',c:'Мотори',fig:1,sp:[['Статор','2207'],['Оберти на вольт','1950KV'],['Маса з дротами','32,5 г'],['Живлення','6S'],['Кріплення','16 × 16 мм, М3']]},
  'eco2807':{n:'EMAX ECO II 2807 1300KV',sku:'EM-ECO2-2807-1300',p:790,s:'in',c:'Мотори',sp:[['Статор','2807'],['Оберти на вольт','1300KV'],['Маса з дротами','47,6 г'],['Живлення','6S'],['Кріплення','19 × 19 мм, М3']]},
  'xt30':{n:'Роз’єм XT30, пара',sku:'XT30-PAIR',p:35,s:'low',c:'Роз’єми',sp:[['Тривалий струм','30 А'],['Дріт','16–18 AWG']]},
  'xt60':{n:'Роз’єм XT60, пара',sku:'XT60-PAIR',p:60,s:'in',c:'Роз’єми',sp:[['Тривалий струм','60 А'],['Дріт','12–14 AWG']]},
  'xt90s':{n:'Роз’єм XT90-S з іскрогасінням, пара',sku:'XT90S-PAIR',p:140,s:'in',c:'Роз’єми',sp:[['Тривалий струм','90 А'],['Дріт','10 AWG'],['Іскрогасіння','є']]}
 };
+const FIG=`<h2>Кріплення</h2><figure class="fig"><svg viewBox="0 0 300 220" role="img" aria-label="Вид знизу: чотири отвори М3 на квадраті 16 на 16 міліметрів, вал по центру">
+<path class="dwg ax" d="M20 110H200M110 20V200"/>
+<circle class="c" cx="110" cy="110" r="70"/><circle class="c" cx="110" cy="110" r="12.5"/>
+<circle class="c" cx="70" cy="70" r="7.5"/><circle class="c" cx="150" cy="70" r="7.5"/><circle class="c" cx="70" cy="150" r="7.5"/><circle class="c" cx="150" cy="150" r="7.5"/>
+<path class="dwg dm" d="M70 62V14M150 62V14M70 20H150M70 20l7-3v6zM150 20l-7-3v6z"/><text class="dwg" x="110" y="15" text-anchor="middle">16</text>
+<path class="dwg dm" d="M155 155L232 178M121 104L232 62"/>
+<g class="dwg"><circle class="mk" cx="244" cy="182" r="11"/><text x="244" y="186" text-anchor="middle">1</text><circle class="mk" cx="244" cy="58" r="11"/><text x="244" y="62" text-anchor="middle">2</text></g>
+</svg><figcaption>Вид знизу. Розміри в міліметрах.</figcaption></figure>
+<ul class="poslist"><li><span class="pos">1</span><span>Отвори кріплення М3, 4 шт., квадрат 16 × 16 мм</span></li><li><span class="pos">2</span><span>Вал під пропелер, різьба М5</span></li></ul>`;
 const STOCK={in:'Є на складі',low:'Мало',none:'Немає в нашому магазині'};
 const S=[['propulsion','Силова установка'],['comms','Зв’язок'],['power','Живлення'],['fc','Керування польотом']];
 const stub=[['p','Цю статтю в прототипі не заповнено. Повні приклади: <a class="link" data-go="a-lipo-2207">Як підібрати LiPo до моторів 2207</a>, <a class="link" data-go="a-lipo-winter">Зберігання LiPo взимку</a>, <a class="link" data-go="a-xt-connectors">Роз’єми XT30, XT60, XT90</a>.']];
@@ -279,7 +381,7 @@ const A={
   ['p','Під різким газом напруга просідає. Якщо на банку припадає менше 3,3 В, акумулятор замалий або зношений. У телеметрії стежте за мінімальною напругою банки, а не за загальною.'],
   ['table',['Стан','На банку','6S разом'],[['Заряджений','4,2 В','25,2 В'],['Зберігання','3,8 В','22,8 В'],['Сідати пора','3,5 В','21,0 В']]],
   ['h2','Що взяти'],
-  ['p','Для <code>TM-F60V-1950</code> на рамі 5 дюймів підійде <a class="link" data-go="p-lipo-1300">LiPo 6S 1300 мА·год 100C</a> з роз’ємом <code>XT60</code>. Для рами 7 дюймів із тими самими моторами беріть 1800–2200 мА·год і перевірте масу: кожні 100 г додають помітне навантаження на мотори.']]},
+  ['p','Для <a class="link" data-go="p-f60">T-Motor F60 Pro V</a> (<code>TM-F60V-1950</code>) на рамі 5 дюймів підійде <a class="link" data-go="p-lipo-1300">LiPo 6S 1300 мА·год 100C</a> з роз’ємом <code>XT60</code>. Для рами 7 дюймів із тими самими моторами беріть 1800–2200 мА·год і перевірте масу: кожні 100 г додають помітне навантаження на мотори.']]},
  'lipo-winter':{t:'Зберігання LiPo взимку',s:'power',m:4,tag:'LiPo, холод',pr:['lipo-1300','lipo-2200'],re:['lipo-2207','field-charging'],b:[
   ['p','На морозі літій-полімерний акумулятор віддає менше ємності й сильніше просідає під навантаженням. Заряджати холодну батарею небезпечно, а зберігати повністю зарядженою шкідливо за будь-якої температури.'],
   ['h2','Зберігання'],
@@ -336,7 +438,7 @@ function view(){
   else if(k==='product'){const p=P[rid()], n=st.cart[rid()]||0, arts=Object.keys(A).filter(a=>A[a].pr.includes(rid()));
     h=`<p class="meta"><a data-go="catalog" class="link" style="color:inherit">Каталог</a>${ic('right')}<span>${p.c}</span><span>· дані для прикладу</span></p><article><h1>${p.n}</h1><p><code>${p.sku}</code></p>
     <div class="buyrow"><span class="big num">${uah(p.p)}</span>${stock(p.s)}${p.s==='none'?'<button class="btn" data-act="prom">Шукати на Prom</button>':n?`<span class="qty"><button data-act="dec" data-id="${rid()}" aria-label="Менше">${ic('minus')}</button><span class="num">${n}</span><button data-act="add" data-id="${rid()}" aria-label="Більше">${ic('plus')}</button></span><button class="btn" data-go="cart">У кошику · перейти</button>`:`<button class="btn primary" data-act="add" data-id="${rid()}">У кошик</button>`}</div>
-    <h2>Характеристики</h2><table class="tbl"><tbody>${p.sp.map(([a,b])=>`<tr><td style="color:var(--text-2)">${a}</td><td class="num">${b}</td></tr>`).join('')}</tbody></table>
+    <h2>Характеристики</h2><table class="tbl"><tbody>${p.sp.map(([a,b])=>`<tr><td style="color:var(--text-2)">${a}</td><td class="num">${b}</td></tr>`).join('')}</tbody></table>${p.fig?FIG:''}
     ${arts.length?`<h2>Згадується в статтях</h2><div class="items">${arts.map(a=>alink(a)).join('')}</div>`:''}</article>`}
   else if(k==='catalog'){const cats=['Усі',...new Set(Object.values(P).map(p=>p.c))], ids=Object.keys(P).filter(i=>st.cat==='Усі'||P[i].c===st.cat);
     h=`<article><h1>Каталог</h1><div class="chips" role="group" aria-label="Категорія">${cats.map(c=>`<button data-act="cat" data-id="${c}" aria-pressed="${c===st.cat}">${c}</button>`).join('')}</div><div class="items">${ids.map(i=>prow(i)).join('')}</div><p class="meta" style="font-size:13px">${ids.length} з ${Object.keys(P).length} товарів · дані для прикладу</p></article>`}
@@ -385,6 +487,7 @@ const ACT={
  dec(id){st.cart[id]>1?st.cart[id]--:delete st.cart[id];say('Кошик оновлено');side();view();panel()},
  addall(){const a=A[rid()].pr.filter(i=>P[i].s!=='none');a.forEach(i=>st.cart[i]=(st.cart[i]||0)+1);say('Додано товарів: '+a.length);side();panel()},
  clear(){st.cart={};say('Кошик очищено');draw()},order(){say('У прототипі оформлення немає')},prom(){say('У прототипі перехід на Prom вимкнено')},
+ skin(id){document.documentElement.dataset.skin=id;document.querySelectorAll('.skins button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.id===id));say({claude:'Варіант: найближчий до Claude',hybrid:'Варіант: суміжний',mine:'Варіант: ваша система'}[id]);progress()},
  cat(id){st.cat=id;view()},focus(){app.classList.remove('drawer');$('q').focus()},
  copy(){const done=()=>say('Посилання скопійовано');(navigator.clipboard?navigator.clipboard.writeText(location.href):Promise.reject()).then(done,()=>say(location.href))}
 };
@@ -403,5 +506,5 @@ $('q').addEventListener('input',e=>{st.q=e.target.value.trim();side();bar();view
 $('ask').addEventListener('submit',e=>{e.preventDefault();const f=document.querySelector('#view .item');if(st.q&&f)f.focus()});
 $('scroll').addEventListener('scroll',progress,{passive:true});addEventListener('scroll',progress,{passive:true});addEventListener('resize',progress);
 if(innerWidth<=760)app.classList.add('nopanel');
-const h0=location.hash.slice(1);if(valid(h0))st.route=h0;draw(true);
+ACT.skin('claude');say('');const h0=location.hash.slice(1);if(valid(h0))st.route=h0;draw(true);
 </script>
