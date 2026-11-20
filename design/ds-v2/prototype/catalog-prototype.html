@@ -1,0 +1,235 @@
+<!-- PROTOTYPE, throwaway. Three structurally different variants of the catalogue screen in the Claude-app style, switchable via #a / #b / #c. Example data only. -->
+<title>Дронопорт каталог прототип</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geologica:wght@400;500;600&family=Onest:wght@400;500;600&family=Martian+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Science+Gothic:wght@900&display=swap">
+<style>
+/* Layout: one ground for every zone; zones split by a single 10% line; raised objects one step lighter. */
+:root{
+  --page:#FAF9F5; --surface:#FFFFFF; --plate:#FFFFFF;
+  --ink:#1A1A18; --ink-2:#5E5D59;
+  --line:#1A1A181A; --line-control:#8C8B85;
+  --fill-hover:#1A1A180D; --fill-selected:#1A1A1814;
+  --olive:#5C6A30; --olive-ink:#4F5A2A; --on-olive:#FFFFFF; --olive-tint:#5C6A301F;
+  --warn:#8A5A00; --plate-ink:#8C8B85;
+  --bar:#1A1A18; --on-bar:#FAF9F5;
+  --ff-text:"Geologica",system-ui,sans-serif;
+  --ff-mark:"Martian Mono",ui-monospace,monospace;
+  --ff-draw:"Science Gothic","Arial Narrow",sans-serif;
+  --r-xs:4px; --r-sm:8px; --r-md:12px; --r-lg:16px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --page:#1F1E1D; --surface:#2A2A28; --plate:#E3E2DD; --ink:#ECEBE7; --ink-2:#A3A199;
+  --line:#ECEBE71A; --line-control:#7C7B75; --fill-hover:#ECEBE70D; --fill-selected:#ECEBE71A;
+  --olive:#8A9A52; --olive-ink:#B4C47A; --on-olive:#0E100C; --olive-tint:#8A9A5229;
+  --warn:#E0B040; --bar:#ECEBE7; --on-bar:#1F1E1D; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --page:#1F1E1D; --surface:#2A2A28; --plate:#E3E2DD; --ink:#ECEBE7; --ink-2:#A3A199;
+  --line:#ECEBE71A; --line-control:#7C7B75; --fill-hover:#ECEBE70D; --fill-selected:#ECEBE71A;
+  --olive:#8A9A52; --olive-ink:#B4C47A; --on-olive:#0E100C; --olive-tint:#8A9A5229;
+  --warn:#E0B040; --bar:#ECEBE7; --on-bar:#1F1E1D; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--page);color:var(--ink);font:400 15px/1.45 var(--ff-text);padding-bottom:96px}
+button,select,input{font:inherit;color:inherit}
+h1,h2,h3,p,ul{margin:0;padding:0}
+ul{list-style:none}
+:focus-visible{outline:2px solid var(--olive-ink);outline-offset:2px}
+.num{font-variant-numeric:tabular-nums}
+.muted{color:var(--ink-2)}
+.label{font-size:12px;font-weight:500;color:var(--ink-2)}
+.mark{font:400 13px/1.4 var(--ff-mark);background:var(--fill-hover);border-radius:var(--r-xs);padding:1px 6px}
+svg.i{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;flex:none}
+
+/* top bar */
+.top{display:flex;align-items:center;gap:8px;height:52px;border-bottom:1px solid var(--line);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wordmark{font:900 19px/1 var(--ff-draw);letter-spacing:.02em;margin-right:16px}
+.top nav{display:flex;gap:4px;min-width:0;overflow-x:auto}
+.top a,.iconbtn{display:flex;align-items:center;gap:8px;height:36px;padding:0 12px;border-radius:var(--r-sm);color:var(--ink);text-decoration:none;white-space:nowrap;border:0;background:none;cursor:pointer}
+.top a:hover,.iconbtn:hover{background:var(--fill-hover)}
+.top a[aria-current]{background:var(--fill-selected)}
+.top .sp{flex:1}
+
+/* shared pieces */
+.btn{height:44px;padding:0 18px;border-radius:var(--r-sm);border:0;cursor:pointer;font-weight:500;white-space:nowrap}
+.btn--primary{background:var(--olive);color:var(--on-olive);width:100%}
+.btn--quiet{background:var(--olive-tint);color:var(--olive-ink)}
+.btn--ghost{background:none;color:var(--ink);padding:0 12px}
+.btn--ghost:hover{background:var(--fill-hover)}
+.stock{display:flex;align-items:center;gap:8px;font-size:13px;white-space:nowrap}
+.stock i{width:8px;height:8px;border-radius:50%;background:var(--olive-ink);flex:none}
+.stock.low{color:var(--warn)} .stock.low i{background:var(--warn)}
+.stock.none{color:var(--ink-2)} .stock.none i{display:none}
+.plate{background:var(--plate);border:1px solid var(--line);border-radius:var(--r-md);display:grid;place-items:center;color:var(--plate-ink);font:400 12px var(--ff-mark)}
+.price{font-weight:600;font-size:17px;white-space:nowrap}
+.head{display:flex;align-items:end;gap:16px;flex-wrap:wrap;margin-bottom:24px}
+.head h1{font-size:32px;line-height:1.2;font-weight:600;letter-spacing:-.01em}
+.head .sp{flex:1}
+select{height:36px;border-radius:var(--r-sm);border:1px solid var(--line-control);background:var(--page);padding:0 8px}
+
+/* sidebar tree */
+.side{padding:16px 8px;border-right:1px solid var(--line);min-width:0}
+.side .label{padding:8px 12px}
+.side button{display:flex;align-items:center;gap:10px;width:100%;height:36px;padding:0 12px;border:0;background:none;border-radius:var(--r-sm);cursor:pointer;text-align:left}
+.side button:hover{background:var(--fill-hover)}
+.side button[aria-current]{background:var(--fill-selected)}
+.side button span{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.side button small{color:var(--ink-2);font-size:12px}
+.side .sub button{padding-left:40px}
+
+/* A: list + detail panel */
+.A{display:grid;grid-template-columns:260px minmax(0,1fr) 340px;min-height:calc(100vh - 52px)}
+.A main,.B main{padding:32px;min-width:0}
+.rows li{display:grid;grid-template-columns:56px minmax(0,1fr) auto auto;gap:16px;align-items:center;padding:10px 12px;border-radius:var(--r-sm);cursor:pointer}
+.rows li+li{box-shadow:0 -1px 0 var(--line)}
+.rows li:hover{background:var(--fill-hover)}
+.rows li[aria-selected="true"]{background:var(--fill-selected);box-shadow:none}
+.rows li[aria-selected="true"]+li{box-shadow:none}
+.rows .plate{width:56px;height:56px;border-radius:var(--r-sm);font-size:10px}
+.rows b{font-weight:500;display:block}
+.rows small{color:var(--ink-2);font-size:13px}
+.detail{border-left:1px solid var(--line);padding:24px;display:flex;flex-direction:column;gap:20px;min-width:0}
+.detail .plate{aspect-ratio:4/3}
+.detail h2{font-size:20px;line-height:1.3;font-weight:600}
+.detail .big{font-size:32px;font-weight:600;line-height:1.1}
+.spec li{display:flex;justify-content:space-between;gap:16px;padding:8px 0;font-size:14px}
+.spec li+li{border-top:1px solid var(--line)}
+.spec span{color:var(--ink-2)}
+.req{background:var(--fill-hover);border-radius:var(--r-md);padding:14px 16px;font-size:14px}
+.req b{display:block;font-weight:600;margin-bottom:4px}
+
+/* B: grid */
+.B{display:grid;grid-template-columns:260px minmax(0,1fr);min-height:calc(100vh - 52px)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:32px 24px}
+.tile{display:flex;flex-direction:column;gap:10px;min-width:0}
+.tile .plate{aspect-ratio:4/3}
+.tile b{font-weight:500;min-height:2.9em}
+.tile .foot{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:auto}
+
+/* C: search-first column */
+.C{max-width:752px;margin:0 auto;padding-block:56px 32px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.C h1{font-size:32px;font-weight:600;letter-spacing:-.01em;margin-bottom:20px}
+.search{display:flex;align-items:center;gap:12px;background:var(--surface);border:1px solid var(--line-control);border-radius:var(--r-lg);padding:0 16px;height:56px}
+.search input{flex:1;min-width:0;border:0;background:none;outline:0;font-size:16px}
+.search:focus-within{outline:2px solid var(--olive-ink);outline-offset:2px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0 40px}
+.chips button{height:32px;padding:0 12px;border-radius:999px;border:1px solid var(--line);background:none;cursor:pointer;font-size:14px}
+.chips button:hover{background:var(--fill-hover)}
+.chips button[aria-pressed="true"]{background:var(--fill-selected);border-color:transparent}
+.group{margin-bottom:32px}
+.group h3{display:flex;gap:10px;align-items:baseline;font-size:12px;font-weight:500;color:var(--ink-2);padding:0 12px 8px}
+.group li{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:16px;align-items:center;min-height:44px;padding:6px 12px;border-radius:var(--r-sm)}
+.group li:hover{background:var(--fill-hover)}
+.group li+li{box-shadow:0 -1px 0 var(--line)}
+.empty{color:var(--ink-2);padding:24px 12px}
+
+@media (max-width:1100px){.A{grid-template-columns:240px minmax(0,1fr)}.A .detail{grid-column:1/-1;border-left:0;border-top:1px solid var(--line)}}
+@media (max-width:760px){
+  .A,.B{display:block}
+  .A main,.B main{padding-block:24px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+  .side{border-right:0;border-bottom:1px solid var(--line);padding-block:8px}
+  .side .rest{display:none}
+  .side button,.chips button,.rows li{min-height:44px}
+  .rows li{grid-template-columns:48px minmax(0,1fr) auto}.rows .stock{display:none}.rows .plate{width:48px;height:48px}
+  .group li{grid-template-columns:minmax(0,1fr) auto}.group .stock{display:none}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 16px}
+  .tile .foot{flex-direction:column;align-items:stretch}
+  .head h1,.C h1{font-size:26px}
+}
+
+/* prototype switcher: deliberately not part of the design */
+.proto{position:fixed;left:50%;bottom:calc(16px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:20;display:flex;align-items:center;gap:4px;
+  background:var(--bar);color:var(--on-bar);border-radius:999px;padding:6px;box-shadow:0 8px 24px #0000004d;font:500 13px/1 system-ui,sans-serif;max-width:calc(100vw - 32px)}
+.proto button{height:36px;min-width:36px;padding:0 10px;border-radius:999px;border:0;background:none;color:inherit;cursor:pointer;font:inherit}
+.proto button:hover{background:#80808055}
+.proto output{padding:0 6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.proto .sep{width:1px;height:20px;background:#80808077;margin:0 4px}
+@media (prefers-reduced-motion:no-preference){.btn,.side button,.rows li,.top a{transition:background-color .12s cubic-bezier(.32,.72,0,1)}}
+</style>
+
+<header class="top">
+  <span class="wordmark">ДРОНОПОРТ</span>
+  <nav><a href="#" aria-current="page">Каталог</a><a href="#">База знань</a><a href="#">Доставка</a></nav>
+  <span class="sp"></span>
+  <button class="iconbtn" aria-label="Пошук"><svg class="i" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg></button>
+  <button class="iconbtn" aria-label="Кошик, 2 товари"><svg class="i" viewBox="0 0 24 24"><path d="M3 4h2.5l2 11h10.5l2-8H7"/><circle cx="9.5" cy="19" r="1.2"/><circle cx="17" cy="19" r="1.2"/></svg><span class="num">2</span></button>
+</header>
+<div id="app"></div>
+
+<div class="proto" role="group" aria-label="Перемикач прототипу">
+  <button id="prev" aria-label="Попередній варіант">←</button>
+  <output id="vlabel"></output>
+  <button id="next" aria-label="Наступний варіант">→</button>
+  <span class="sep"></span>
+  <button id="font" aria-label="Змінити гарнітуру"></button>
+</div>
+
+<script>
+// Example data, not real stock or prices.
+const P=[
+ {n:'T-Motor F60 Pro V 2207 1950KV',g:'2207',kv:'1950KV',w:'32,5 г',s:'in',p:1380,a:'TM-F60V-1950'},
+ {n:'iFlight XING2 2207 1855KV',g:'2207',kv:'1855KV',w:'31,2 г',s:'in',p:1120,a:'IF-X2-2207-1855'},
+ {n:'Axisflying AE2207 V2 1960KV',g:'2207',kv:'1960KV',w:'33,8 г',s:'low',p:980,a:'AX-AE2207-1960'},
+ {n:'BrotherHobby Avenger 2306.5 1900KV',g:'2306',kv:'1900KV',w:'34,0 г',s:'none',p:0,a:'BH-AV2306-1900'},
+ {n:'EMAX ECO II 2306 1700KV',g:'2306',kv:'1700KV',w:'33,0 г',s:'in',p:640,a:'EM-ECO2-2306-1700'},
+ {n:'EMAX ECO II 2807 1300KV',g:'2807',kv:'1300KV',w:'47,6 г',s:'in',p:790,a:'EM-ECO2-2807-1300'},
+ {n:'BrotherHobby Avenger 2812 900KV для рам 9–10 дюймів',g:'2812',kv:'900KV',w:'74,0 г',s:'in',p:1650,a:'BH-AV2812-900'},
+ {n:'T-Motor F90 2806.5 1300KV',g:'2807',kv:'1300KV',w:'50,2 г',s:'low',p:1490,a:'TM-F90-1300'}
+];
+const TREE=[['Силова установка',null,[['Мотори',26,1],['Регулятори',14],['Пропелери',31]]],['Живлення',22],['Зв’язок',18],['Керування польотом',12],['Рами',9],['Корисне навантаження',7]];
+const ICON={folder:'<path d="M3.5 7.5v10h17v-8h-8l-2-2z"/>',chev:'<path d="M9 6l6 6-6 6"/>'};
+const svg=k=>`<svg class="i" viewBox="0 0 24 24">${ICON[k]}</svg>`;
+const uah=p=>p?`<span class="price num">${String(p).replace(/\B(?=(\d{3})+$)/g,' ')} ₴</span>`:'';
+const stock=s=>({in:'<span class="stock"><i></i>Є на складі</span>',low:'<span class="stock low"><i></i>Мало</span>',none:'<span class="stock none">Немає в нашому магазині</span>'})[s];
+const plate=p=>`<div class="plate" role="img" aria-label="Місце для фото: ${p.n}">${p.g}</div>`;
+const side=()=>`<aside class="side"><p class="label">Каталог</p><ul>${TREE.map(([n,c,sub],i)=>`<li class="${i?'rest':''}"><button>${svg('folder')}<span>${n}</span>${c?`<small class="num">${c}</small>`:''}</button>${sub?`<ul class="sub">${sub.map(([m,k,cur])=>`<li><button ${cur?'aria-current="page"':''}><span>${m}</span><small class="num">${k}</small></button></li>`).join('')}</ul>`:''}</li>`).join('')}</ul></aside>`;
+const head=`<div class="head"><div><h1>Мотори</h1><p class="muted">26 позицій · оновлено 18.11.2026 · дані для прикладу</p></div><span class="sp"></span><label class="label" for="sort">Сортування</label><select id="sort"><option>Спершу в наявності</option><option>Дешевші</option><option>Дорожчі</option></select></div>`;
+let sel=0, q='', chip='Усі';
+
+const V={
+ a:{name:'Список і панель товару',render(){
+   const p=P[sel];
+   return `<div class="A">${side()}<main>${head}<ul class="rows" role="listbox" aria-label="Мотори">${P.map((x,i)=>`<li role="option" tabindex="0" data-i="${i}" aria-selected="${i===sel}">${plate(x)}<div><b>${x.n}</b><small>${x.kv} · ${x.w}</small></div>${stock(x.s)}${uah(x.p)}</li>`).join('')}</ul></main>
+   <aside class="detail" aria-live="polite">${plate(p)}<div><h2>${p.n}</h2><p style="margin-top:8px"><span class="mark">${p.a}</span></p></div>
+   ${p.p?`<div class="big num">${String(p.p).replace(/\B(?=(\d{3})+$)/g,' ')} ₴</div>${stock(p.s)}<button class="btn btn--primary">У кошик</button>`:`${stock(p.s)}<button class="btn btn--quiet">Шукати на Prom</button>`}
+   <ul class="spec"><li><span>Статор</span><b class="num">${p.g}</b></li><li><span>Оберти на вольт</span><b class="num">${p.kv}</b></li><li><span>Маса з дротами</span><b class="num">${p.w}</b></li><li><span>Живлення</span><b>6S</b></li><li><span>Кріплення</span><b class="num">16 × 16 мм, М3</b></li></ul>
+   <div class="req"><b>Технічні вимоги</b>Гвинти кріплення не довші за 7 мм, інакше вони дістають обмотку.</div></aside></div>`;
+ }},
+ b:{name:'Сітка плиток',render(){
+   return `<div class="B">${side()}<main>${head}<div class="grid">${P.map(x=>`<article class="tile">${plate(x)}<b>${x.n}</b>${stock(x.s)}<div class="foot">${x.p?`${uah(x.p)}<button class="btn btn--quiet">У кошик</button>`:`<button class="btn btn--ghost">Шукати на Prom</button>`}</div></article>`).join('')}</div></main></div>`;
+ }},
+ c:{name:'Спершу пошук',render(){
+   const sizes=['Усі',...new Set(P.map(x=>x.g))];
+   const list=P.filter(x=>(chip==='Усі'||x.g===chip)&&(x.n+x.a).toLowerCase().includes(q.toLowerCase()));
+   const groups=[...new Set(list.map(x=>x.g))];
+   return `<main class="C"><h1>Мотори</h1>
+   <label class="search"><svg class="i" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg><input id="q" type="search" placeholder="Назва, артикул або параметр: 2207, 1950KV" value="${q}" aria-label="Пошук у розділі «Мотори»"></label>
+   <div class="chips" role="group" aria-label="Розмір статора">${sizes.map(s=>`<button data-chip="${s}" aria-pressed="${s===chip}">${s}</button>`).join('')}</div>
+   ${groups.length?groups.map(g=>`<section class="group"><h3><span>Статор ${g}</span><span class="num">${list.filter(x=>x.g===g).length}</span></h3><ul>${list.filter(x=>x.g===g).map(x=>`<li><div><b style="font-weight:500">${x.n}</b> <span class="mark">${x.a}</span></div>${stock(x.s)}${x.p?uah(x.p):'<button class="btn btn--ghost" style="height:32px">Prom</button>'}</li>`).join('')}</ul></section>`).join(''):`<p class="empty">Нічого не знайдено. Спробуйте розмір статора або KV, наприклад «2807».</p>`}
+   </main>`;
+ }}
+};
+const keys=Object.keys(V), fonts=['Geologica','Onest']; let fi=0;
+const cur=()=>keys.includes(location.hash.slice(1))?location.hash.slice(1):'a';
+function draw(keepFocus){
+  const k=cur(); app.className=''; app.innerHTML=V[k].render();
+  vlabel.textContent=`${k.toUpperCase()} · ${V[k].name}`; font.textContent=fonts[fi];
+  if(keepFocus){const i=document.getElementById('q'); if(i){i.focus(); i.setSelectionRange(q.length,q.length);}}
+}
+const go=d=>{location.hash=keys[(keys.indexOf(cur())+d+keys.length)%keys.length]};
+prev.onclick=()=>go(-1); next.onclick=()=>go(1);
+font.onclick=()=>{fi=(fi+1)%fonts.length; document.documentElement.style.setProperty('--ff-text',`"${fonts[fi]}",system-ui,sans-serif`); draw()};
+addEventListener('hashchange',()=>draw());
+addEventListener('keydown',e=>{
+  if(e.target.matches('input,textarea,select,[contenteditable]'))return;
+  if(e.key==='ArrowLeft')go(-1); if(e.key==='ArrowRight')go(1);
+  if((e.key==='Enter'||e.key===' ')&&e.target.dataset.i){e.preventDefault(); sel=+e.target.dataset.i; draw()}
+});
+app.addEventListener('click',e=>{
+  const r=e.target.closest('[data-i]'); if(r){sel=+r.dataset.i; draw(); return}
+  const c=e.target.closest('[data-chip]'); if(c){chip=c.dataset.chip; draw()}
+});
+app.addEventListener('input',e=>{if(e.target.id==='q'){q=e.target.value; draw(true)}});
+draw();
+</script>
