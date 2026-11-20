@@ -20,7 +20,7 @@ const over=(f,b)=>[0,1,2].map(i=>f[i]*f[3]+b[i]*(1-f[3])).concat(1);
 const lum=c=>{const [r,g,b]=c.slice(0,3).map(v=>{v/=255;return v<=.03928?v/12.92:((v+.055)/1.055)**2.4});return .2126*r+.7152*g+.0722*b};
 const ratio=(a,b)=>{const [x,y]=[lum(a),lum(b)].sort((p,q)=>q-p);return (x+.05)/(y+.05)};
 const col=(n,th)=>parse(val(t.color.tokens.find(x=>x.name===n),th));
-const pairs=[['text','bg',4.5],['text','bg-side',4.5],['text','bg-raised',4.5],['text-2','bg',4.5],['text-2','bg-side',4.5],['text-2','bg-raised',4.5],['text-3','bg',4.5],['text-3','bg-raised',4.5],['olive-ink','bg',4.5],['olive-ink','bg-side',4.5],['on-olive','olive',4.5],['warn','bg',4.5],['danger','bg',4.5],['line-control','bg',3],['olive-ink','bg-raised',3],['olive','bg',3]];
+const pairs=[['text','bg',4.5],['text','bg-side',4.5],['text','bg-raised',4.5],['text-2','bg',4.5],['text-2','bg-side',4.5],['text-2','bg-raised',4.5],['text-3','bg',4.5],['text-3','bg-raised',4.5],['olive-ink','bg',4.5],['olive-ink','bg-side',4.5],['on-olive','olive',4.5],['warn','bg',4.5],['danger','bg',4.5],['line-control','bg',3],['olive-ink','bg-raised',3],['olive','bg',3],['on-plate','plate',4.5]];
 for(const th of themes)for(const [f,b,min] of pairs){const bg=over(col(b,th),th==='light'?[255,255,255,1]:[0,0,0,1]);const r=ratio(over(col(f,th),bg),bg);(r<min?errs:notes).push(`${th} ${f} on ${b}: ${r.toFixed(2)} (need ${min})`)}
 // text on tinted fills
 for(const th of themes){const bg=over(col('fill-strong',th),over(col('bg',th),[0,0,0,1]));const r=ratio(over(col('text',th),bg),bg);if(r<4.5)errs.push(`${th} text on fill-strong ${r.toFixed(2)}`)}

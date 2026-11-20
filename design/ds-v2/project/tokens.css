@@ -4,6 +4,7 @@
   --bg-side: #FAFAFA;
   --bg-raised: #FFFFFF;
   --plate: #FFFFFF;
+  --on-plate: #5E5E5E;
   --text: rgba(0,0,0,0.9);
   --text-2: rgba(0,0,0,0.6);
   --text-3: rgba(0,0,0,0.54);
@@ -27,6 +28,7 @@
   --bg-side: #181818;
   --bg-raised: #262626;
   --plate: #E3E2DD;
+  --on-plate: #55554F;
   --text: rgba(255,255,255,0.9);
   --text-2: rgba(255,255,255,0.6);
   --text-3: rgba(255,255,255,0.5);
