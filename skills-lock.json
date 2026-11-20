@@ -1,0 +1,82 @@
+{
+  "version": 2,
+  "skills": {
+    "agent-browser": {
+      "source": "BuilderIO/builder-agent-skills",
+      "commit": "44ee461ce9532c69e0ae8df7b31949c3ae7b3286",
+      "sourceType": "github",
+      "skillPath": "agent-browser/SKILL.md",
+      "computedHash": "8531fc0e065e9485a36954f00de662394a73603257105e87686cda12689e014d"
+    },
+    "efficient-fable": {
+      "source": "BuilderIO/skills",
+      "commit": "551e97e687444f8f627e4099475a92527bbd5b03",
+      "sourceType": "github",
+      "skillPath": "skills/efficient-fable/SKILL.md",
+      "computedHash": "e9c4c0312e1a6795caffce8ba472182ab4d7120c4eaf8bff4b0f6aa789aa93a2"
+    },
+    "efficient-frontier": {
+      "source": "BuilderIO/skills",
+      "commit": "551e97e687444f8f627e4099475a92527bbd5b03",
+      "sourceType": "github",
+      "skillPath": "skills/efficient-frontier/SKILL.md",
+      "computedHash": "4ab49d58e3750660096ea340699c64d7f019d1f3edbb170fb547e80d182124b9"
+    },
+    "efficient-orchestrator": {
+      "source": "BuilderIO/skills",
+      "commit": "551e97e687444f8f627e4099475a92527bbd5b03",
+      "sourceType": "github",
+      "skillPath": "skills/efficient-orchestrator/SKILL.md",
+      "computedHash": "52dd446e364285436f09d1176466bd7cb63f46d2e65e3a7e83a59e50c0338b6d"
+    },
+    "grill-me": {
+      "source": "BuilderIO/builder-agent-skills",
+      "commit": "44ee461ce9532c69e0ae8df7b31949c3ae7b3286",
+      "sourceType": "github",
+      "skillPath": "grill-me/SKILL.md",
+      "computedHash": "759d76efe2d92ed6bb88116e126ee81226bd983afcf92d4912a4fa21dccbce28"
+    },
+    "hallmark": {
+      "source": "BuilderIO/builder-agent-skills",
+      "commit": "44ee461ce9532c69e0ae8df7b31949c3ae7b3286",
+      "sourceType": "github",
+      "skillPath": "hallmark/SKILL.md",
+      "computedHash": "a287d1fb6fc24a3968c939e398a99dff7a3b8bf54bcd654de5724685ac30c550"
+    },
+    "playwright-cli": {
+      "source": "BuilderIO/builder-agent-skills",
+      "commit": "44ee461ce9532c69e0ae8df7b31949c3ae7b3286",
+      "sourceType": "github",
+      "skillPath": "playwright/SKILL.md",
+      "computedHash": "c970a9f0aa13d614423bc4d139be5e383f708b44f1f49fce51aefb08cec553b1"
+    },
+    "plow-ahead": {
+      "source": "BuilderIO/skills",
+      "commit": "551e97e687444f8f627e4099475a92527bbd5b03",
+      "sourceType": "github",
+      "skillPath": "skills/plow-ahead/SKILL.md",
+      "computedHash": "ba9239aa47a1ff17fa6515064c73b17fae27bcb748ae2d01b21fe65c10fc2124"
+    },
+    "read-the-damn-docs": {
+      "source": "BuilderIO/skills",
+      "commit": "551e97e687444f8f627e4099475a92527bbd5b03",
+      "sourceType": "github",
+      "skillPath": "skills/read-the-damn-docs/SKILL.md",
+      "computedHash": "dc89e19e4baa58b303b0066c3d76c4dfba53c9997a17dfd6f154c7fc74670efc"
+    },
+    "refactoring-ui": {
+      "source": "BuilderIO/builder-agent-skills",
+      "commit": "44ee461ce9532c69e0ae8df7b31949c3ae7b3286",
+      "sourceType": "github",
+      "skillPath": "refactoring-ui/SKILL.md",
+      "computedHash": "d995183dd20c1685f8eda5bc6a9f537846354589026d64bc3aac80c2e7e8ce6b"
+    },
+    "stop-slop": {
+      "source": "BuilderIO/builder-agent-skills",
+      "commit": "44ee461ce9532c69e0ae8df7b31949c3ae7b3286",
+      "sourceType": "github",
+      "skillPath": "stop-slop/SKILL.md",
+      "computedHash": "fa1e68244309e39fd03e734e59ea6b3432fb3f812d416aaf3d2269b3917d3486"
+    }
+  }
+}
