@@ -479,7 +479,8 @@ function progress(){
 function draw(top){side();bar();view();panel();if(top){$('scroll').scrollTop=0;if(getComputedStyle($('scroll')).overflowY==='visible')scrollTo(0,0);progress()}}
 function go(r){st.q='';$('q').value='';st.route=r;app.classList.remove('drawer');if(location.hash.slice(1)!==r)location.hash=r;else draw(true)}
 function valid(r){return ['catalog','kb','delivery','cart'].includes(r)||(r.startsWith('a-')&&A[r.slice(2)])||(r.startsWith('p-')&&P[r.slice(2)])}
-addEventListener('hashchange',()=>{const r=location.hash.slice(1);if(valid(r)){st.route=r;const a=A[r.slice(2)];if(r.startsWith('a-')&&a)st.open[a.s]=true;draw(true)}});
+const SK=['claude','hybrid','mine'];
+addEventListener('hashchange',()=>{const r=location.hash.slice(1);if(SK.includes(r)){ACT.skin(r);return}if(valid(r)){st.route=r;const a=A[r.slice(2)];if(r.startsWith('a-')&&a)st.open[a.s]=true;draw(true)}});
 const ACT={
  side(){innerWidth<=760?app.classList.toggle('drawer'):app.classList.toggle('noside');bar()},drawer(){app.classList.remove('drawer')},
  panel(){app.classList.toggle('nopanel');bar();if(innerWidth<=760&&!app.classList.contains('nopanel'))$('panel').scrollIntoView()},
@@ -509,5 +510,5 @@ $('q').addEventListener('input',e=>{st.q=e.target.value.trim();side();bar();view
 $('ask').addEventListener('submit',e=>{e.preventDefault();const f=document.querySelector('#view .item');if(st.q&&f)f.focus()});
 $('scroll').addEventListener('scroll',progress,{passive:true});addEventListener('scroll',progress,{passive:true});addEventListener('resize',progress);
 if(innerWidth<=760)app.classList.add('nopanel');
-ACT.skin('claude');say('');const h0=location.hash.slice(1);if(valid(h0))st.route=h0;draw(true);
+const h0=location.hash.slice(1);ACT.skin(SK.includes(h0)?h0:'claude');say('');if(valid(h0))st.route=h0;draw(true);
 </script>
