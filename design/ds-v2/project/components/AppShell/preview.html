@@ -1,5 +1,5 @@
 <!-- @dsCard group="Каркас" height=560 page -->
-<div class="app" style="height:560px">
+<div class="app" style="height:560px;grid-template-columns:var(--side) minmax(0,1fr) var(--panel)">
   <aside class="side">
     <div class="bar"><span class="wordmark">Дронопорт</span><span class="sp"></span><button class="ib" aria-label="Згорнути панель"><svg class="icon" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="14" rx="2.5"/><path d="M9 5v14"/></svg></button></div>
     <div class="nav">
@@ -29,7 +29,7 @@
     </div></div>
     <div class="dock"><div class="search"><svg class="icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg><input placeholder="Шукати в базі знань і каталозі" aria-label="Пошук"><button class="go" aria-label="Шукати"><svg class="icon" viewBox="0 0 24 24"><path d="M16 16l4.5 4.5"/><circle cx="11" cy="11" r="6.5"/></svg></button></div><div class="status"><span><b>42</b> статті</span><span><b>248</b> товарів</span></div></div>
   </main>
-  <aside class="panel">
+  <aside class="panel" style="display:block">
     <div class="sec">
       <div class="read"><b>Зміст</b><span>40%</span></div>
       <div class="track"><i style="width:40%"></i></div>
