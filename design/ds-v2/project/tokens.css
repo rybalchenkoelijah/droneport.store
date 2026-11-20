@@ -1,0 +1,100 @@
+/* Дронопорт — дизайн-система v2 — generated from tokens.json */
+:root, [data-theme="light"] {
+  --bg: #FFFFFF;
+  --bg-side: #FAFAFA;
+  --bg-raised: #FFFFFF;
+  --plate: #FFFFFF;
+  --text: rgba(0,0,0,0.9);
+  --text-2: rgba(0,0,0,0.6);
+  --text-3: rgba(0,0,0,0.54);
+  --line: rgba(0,0,0,0.08);
+  --line-strong: rgba(0,0,0,0.12);
+  --line-control: rgba(0,0,0,0.45);
+  --fill: rgba(0,0,0,0.05);
+  --fill-strong: rgba(0,0,0,0.1);
+  --olive: #5C6A30;
+  --on-olive: #FFFFFF;
+  --olive-ink: #4F5A2A;
+  --brand: #6B7A3A;
+  --warn: #8A5A00;
+  --danger: #A6342A;
+  --hit: rgba(251,179,21,0.33);
+  --scrim: rgba(0,0,0,0.35);
+  --shadow-raised: 0 4px 20px rgba(0,0,0,0.035);
+}
+[data-theme="dark"] {
+  --bg: #1C1C1C;
+  --bg-side: #181818;
+  --bg-raised: #262626;
+  --plate: #E3E2DD;
+  --text: rgba(255,255,255,0.9);
+  --text-2: rgba(255,255,255,0.6);
+  --text-3: rgba(255,255,255,0.5);
+  --line: rgba(255,255,255,0.08);
+  --line-strong: rgba(255,255,255,0.14);
+  --line-control: rgba(255,255,255,0.42);
+  --fill: rgba(255,255,255,0.06);
+  --fill-strong: rgba(255,255,255,0.11);
+  --olive: #8A9A52;
+  --on-olive: #0E100C;
+  --olive-ink: #B4C47A;
+  --brand: #6B7A3A;
+  --warn: #E0B040;
+  --danger: #F07A6A;
+  --hit: rgba(251,179,21,0.3);
+  --scrim: rgba(0,0,0,0.5);
+  --shadow-raised: 0 4px 20px rgba(0,0,0,0.25);
+  color-scheme: dark;
+}
+:root {
+  --space-2: 2px;
+  --space-4: 4px;
+  --space-6: 6px;
+  --space-8: 8px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-24: 24px;
+  --space-32: 32px;
+  --space-48: 48px;
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 14px;
+  --radius-pill: 999px;
+  --side: 288px;
+  --panel: 320px;
+  --bar: 45px;
+  --row: 32px;
+  --control: 28px;
+  --control-field: 36px;
+  --control-touch: 44px;
+  --measure: 768px;
+  --icon: 20px;
+  --icon-sm: 16px;
+  --marker: 22px;
+  --line-w: 1px;
+  --line-focus: 2px;
+  --line-icon: 1.4px;
+  --line-dwg-main: 2px;
+  --line-dwg-dim: 1px;
+  --dur-fast: 0.06s;
+  --dur-base: 0.2s;
+  --ease-std: cubic-bezier(.4,0,.2,1);
+  --ease-snap: cubic-bezier(.32,.72,0,1);
+  --bp-sm: 760px;
+  --bp-lg: 1100px;
+  --font-text: "Geologica", system-ui, sans-serif;
+  --font-mark: "Martian Mono", ui-monospace, monospace;
+  --font-draw: "Science Gothic", "Arial Narrow", sans-serif;
+}
+.title { font-family: var(--font-text); font-size: 22px; line-height: 28px; font-weight: 580; }
+.heading { font-family: var(--font-text); font-size: 17px; line-height: 24px; font-weight: 580; }
+.body { font-family: var(--font-text); font-size: 15px; line-height: 21px; font-weight: 400; }
+.ui { font-family: var(--font-text); font-size: 14px; line-height: 20px; font-weight: 400; }
+.control { font-family: var(--font-text); font-size: 13px; line-height: 16px; font-weight: 435; }
+.caption { font-family: var(--font-text); font-size: 13px; line-height: 19px; font-weight: 400; }
+.label { font-family: var(--font-text); font-size: 12px; line-height: 20px; font-weight: 520; }
+.mark { font-family: var(--font-mark); font-size: 12.5px; line-height: 1; font-weight: 400; }
+.dwg { font-family: var(--font-mark); font-size: 11px; line-height: 1; font-weight: 400; }
+.wordmark { font-family: var(--font-draw); font-size: 18px; line-height: 20px; font-weight: 900; }
