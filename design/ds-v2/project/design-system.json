@@ -1,0 +1,205 @@
+{
+ "v": 3,
+ "layout": "files",
+ "createdOnFiles": {
+  "v": 1,
+  "at": "2026-11-20T15:30:00Z"
+ },
+ "title": "Дронопорт — дизайн-система v2",
+ "namespace": "Droneport",
+ "libraries": [],
+ "sections": {},
+ "groups": [
+  "Logos",
+  "Icons"
+ ],
+ "assetGroups": {
+  "Logos": {
+   "name": "Logos",
+   "tile": "l",
+   "order": [
+    "logo-mark.svg",
+    "logo-lockup.svg",
+    "logo-lockup-dark.svg"
+   ],
+   "files": {
+    "logo-mark.svg": {
+     "name": "logo-mark.svg",
+     "blob": "0798de7d5a4408bbe870b9b4987e2a2d",
+     "size": 1793,
+     "type": "image/svg+xml"
+    },
+    "logo-lockup.svg": {
+     "name": "logo-lockup.svg",
+     "blob": "6142f1d23859420de854496253b1ff68",
+     "size": 7101,
+     "type": "image/svg+xml"
+    },
+    "logo-lockup-dark.svg": {
+     "name": "logo-lockup-dark.svg",
+     "blob": "262e6ce63519ee2c48dba8abfba20d78",
+     "size": 7101,
+     "type": "image/svg+xml"
+    }
+   }
+  },
+  "Icons": {
+   "name": "Icons",
+   "tile": "xs",
+   "order": [
+    "sec-power.svg",
+    "sec-comms.svg",
+    "sec-propulsion.svg",
+    "sec-flight-controller.svg",
+    "sec-frames.svg",
+    "sec-payload.svg",
+    "sec-ground-station.svg",
+    "sec-repair.svg",
+    "home.svg",
+    "folder.svg",
+    "doc.svg",
+    "collapse.svg",
+    "chevron-down.svg",
+    "search.svg",
+    "theme.svg",
+    "cart.svg",
+    "external.svg",
+    "download.svg",
+    "warning.svg",
+    "drawing.svg"
+   ],
+   "files": {
+    "sec-power.svg": {
+     "name": "sec-power.svg",
+     "blob": "56471bf532d0a403cd8a8c58d3d7a462",
+     "size": 252,
+     "type": "image/svg+xml"
+    },
+    "sec-comms.svg": {
+     "name": "sec-comms.svg",
+     "blob": "edf054606188b5cac85ecea5ad81410e",
+     "size": 342,
+     "type": "image/svg+xml"
+    },
+    "sec-propulsion.svg": {
+     "name": "sec-propulsion.svg",
+     "blob": "658c14828a245d70220c7b05e60c4aa1",
+     "size": 366,
+     "type": "image/svg+xml"
+    },
+    "sec-flight-controller.svg": {
+     "name": "sec-flight-controller.svg",
+     "blob": "7cbb6af5331b7fbbbf0ec2f6ba5a57c7",
+     "size": 333,
+     "type": "image/svg+xml"
+    },
+    "sec-frames.svg": {
+     "name": "sec-frames.svg",
+     "blob": "70ca38b180a080722cc04b8554c42aa5",
+     "size": 425,
+     "type": "image/svg+xml"
+    },
+    "sec-payload.svg": {
+     "name": "sec-payload.svg",
+     "blob": "33c295ab3d3898b422de86de09378b90",
+     "size": 241,
+     "type": "image/svg+xml"
+    },
+    "sec-ground-station.svg": {
+     "name": "sec-ground-station.svg",
+     "blob": "097da9b20d3699cf01da54014425da76",
+     "size": 321,
+     "type": "image/svg+xml"
+    },
+    "sec-repair.svg": {
+     "name": "sec-repair.svg",
+     "blob": "b33acfa30a2b40901f8b9e36945a05a3",
+     "size": 259,
+     "type": "image/svg+xml"
+    },
+    "home.svg": {
+     "name": "home.svg",
+     "blob": "d2e16fa2eedbe660f85b3bc5b0290387",
+     "size": 224,
+     "type": "image/svg+xml"
+    },
+    "folder.svg": {
+     "name": "folder.svg",
+     "blob": "e4ce741099dd50cbe82dc87f9431f91e",
+     "size": 197,
+     "type": "image/svg+xml"
+    },
+    "doc.svg": {
+     "name": "doc.svg",
+     "blob": "151260019fb2e0c5d6cb2672f8c27c88",
+     "size": 222,
+     "type": "image/svg+xml"
+    },
+    "collapse.svg": {
+     "name": "collapse.svg",
+     "blob": "6cedd95ab4c7ab48a8e43a67d68d4482",
+     "size": 227,
+     "type": "image/svg+xml"
+    },
+    "chevron-down.svg": {
+     "name": "chevron-down.svg",
+     "blob": "d328e25135298e1eccc10f762442b9ca",
+     "size": 191,
+     "type": "image/svg+xml"
+    },
+    "search.svg": {
+     "name": "search.svg",
+     "blob": "3d04b787d2db942cf3866cf74bdb5fb3",
+     "size": 240,
+     "type": "image/svg+xml"
+    },
+    "theme.svg": {
+     "name": "theme.svg",
+     "blob": "75047b3fa021341a1b858441a7d11938",
+     "size": 280,
+     "type": "image/svg+xml"
+    },
+    "cart.svg": {
+     "name": "cart.svg",
+     "blob": "68c26418d3adbf3d7e8367de1b54e175",
+     "size": 293,
+     "type": "image/svg+xml"
+    },
+    "external.svg": {
+     "name": "external.svg",
+     "blob": "8adab27bbd550096fd14fd265b50fc61",
+     "size": 248,
+     "type": "image/svg+xml"
+    },
+    "download.svg": {
+     "name": "download.svg",
+     "blob": "0d682845bb94f05465dc3c9a97f2282a",
+     "size": 244,
+     "type": "image/svg+xml"
+    },
+    "warning.svg": {
+     "name": "warning.svg",
+     "blob": "352d88d4c29d04b2dc6bcb44309682b0",
+     "size": 230,
+     "type": "image/svg+xml"
+    },
+    "drawing.svg": {
+     "name": "drawing.svg",
+     "blob": "a9d6912eea6271fd7b4267b244910217",
+     "size": 293,
+     "type": "image/svg+xml"
+    }
+   }
+  }
+ },
+ "blobs": {},
+ "docs": {
+  "sections": []
+ },
+ "lastChange": {
+  "by": "Elijah",
+  "at": "2026-11-20T15:30:00Z",
+  "via": "Claude Code",
+  "note": "Перша версія v2: каркас і розміри Claude, шрифти й олива Дронопорту, креслення лише у схемах"
+ }
+}

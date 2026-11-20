@@ -1,0 +1,24 @@
+<!-- @dsCard height=288 -->
+<div class="cv">
+<style>
+.cv{position:relative;width:960px;height:288px;overflow:hidden;background:var(--bg)}
+.cv svg{position:absolute;inset:0;width:960px;height:288px}
+.cv .olive{fill:var(--olive)} .cv .ink{fill:var(--text)} .cv .leaf{fill:var(--olive-ink)} .cv .tint{fill:var(--fill-strong)}
+.cv .tile{rx:var(--radius-lg)} .cv .ring{fill:none;stroke:var(--on-olive);stroke-width:var(--line-dwg-main)}
+.cv .txt{position:absolute;left:48px;bottom:44px;max-width:440px}
+.cv h1{margin:0;font:900 56px/.95 var(--font-draw);color:var(--text);letter-spacing:-.01em}
+.cv p{margin:var(--space-12) 0 0;font:400 13px/19px var(--font-text);color:var(--text-2)}
+</style>
+<svg viewBox="0 0 960 288" aria-hidden="true">
+<!-- blocks: olive 192×336 slab, text 208×96, olive-ink 96×160, fill-strong 96×160
+     arrangement: one tall slab bleeding top and bottom with three satellites to its right, corners radius-lg
+     pattern: rings cut like motor mounting holes, because the system keeps drawing conventions for real part drawings only
+     scales: pitch space-48, ring radius space-8, stroke line-dwg-main, corners radius-lg -->
+<rect class="olive tile" x="528" y="-24" width="192" height="336"/>
+<rect class="ink tile" x="736" y="24" width="208" height="96"/>
+<rect class="leaf tile" x="736" y="136" width="96" height="160"/>
+<rect class="tint tile" x="848" y="136" width="96" height="160"/>
+<g class="ring"><circle cx="576" cy="48" r="8"/><circle cx="624" cy="48" r="8"/><circle cx="672" cy="48" r="8"/><circle cx="576" cy="96" r="8"/><circle cx="624" cy="96" r="8"/><circle cx="672" cy="96" r="8"/><circle cx="576" cy="144" r="8"/><circle cx="624" cy="144" r="8"/><circle cx="672" cy="144" r="8"/><circle cx="576" cy="192" r="8"/><circle cx="624" cy="192" r="8"/><circle cx="672" cy="192" r="8"/><circle cx="576" cy="240" r="8"/><circle cx="624" cy="240" r="8"/><circle cx="672" cy="240" r="8"/></g>
+</svg>
+<div class="txt"><h1>Дронопорт</h1><p>Комплектуючі для дронів і база знань.</p></div>
+</div>
