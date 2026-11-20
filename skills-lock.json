@@ -71,6 +71,13 @@
       "skillPath": "skills/efficient-orchestrator/SKILL.md",
       "computedHash": "52dd446e364285436f09d1176466bd7cb63f46d2e65e3a7e83a59e50c0338b6d"
     },
+    "extract-design": {
+      "source": "Manavarya09/design-extract",
+      "commit": "7d37734ef93c57daf358638322ffcb2c45118b3d",
+      "sourceType": "github",
+      "skillPath": "skills/extract-design/SKILL.md",
+      "computedHash": "82ed8d8f3b29c2bf2d89103dffc58044269b7fbfc73acf25ba8e888c58177249"
+    },
     "grill-me": {
       "source": "mattpocock/skills",
       "commit": "abeeaf95660ba9e8b7c753eb38f441ca707a8823",
