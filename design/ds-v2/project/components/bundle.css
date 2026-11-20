@@ -221,7 +221,10 @@ button,input,select,textarea{font:inherit;color:inherit}
 .main>.bar{padding-left:var(--space-16);border-bottom:var(--line-w) solid var(--line)}
 .bar .sp{flex:1}
 .bar-title{min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;font-size:14px;font-weight:435}
-.wordmark{font:900 18px/20px var(--font-draw);text-transform:uppercase;letter-spacing:.01em;margin-left:var(--space-6)}
+.logo{display:inline-flex;align-items:center;gap:var(--space-8);margin-left:var(--space-4);border-radius:var(--radius-sm);color:var(--text);text-decoration:none}
+.logo-mark{width:var(--logo);height:var(--logo);flex:none}
+.logo-mark rect{fill:var(--brand)}
+.wordmark{font:900 18px/20px var(--font-draw);text-transform:uppercase;letter-spacing:.01em}
 
 /* ---------- кнопки ---------- */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-6);height:var(--control);padding:0 var(--space-12);border:0;border-radius:var(--radius-md);background:var(--fill);color:var(--text);font:435 13px/16px var(--font-text);white-space:nowrap;cursor:pointer;text-decoration:none}
