@@ -1,5 +1,30 @@
 /* Дронопорт — дизайн-система v2 — generated from tokens.json */
-:root, [data-theme="light"] {
+:root, [data-theme="dark"] {
+  --bg: #191919;
+  --bg-side: #1F1F1F;
+  --bg-raised: #303030;
+  --plate: #E3E2DD;
+  --on-plate: #55554F;
+  --text: rgba(255,255,255,0.93);
+  --text-2: rgba(255,255,255,0.57);
+  --text-3: rgba(255,255,255,0.52);
+  --line: rgba(255,255,255,0.1);
+  --line-strong: rgba(255,255,255,0.12);
+  --line-control: rgba(255,255,255,0.42);
+  --fill: rgba(255,255,255,0.075);
+  --fill-strong: rgba(255,255,255,0.15);
+  --olive: #8A9A52;
+  --on-olive: #0E100C;
+  --olive-ink: #B4C47A;
+  --brand: #6B7A3A;
+  --warn: #E0B040;
+  --danger: #F07A6A;
+  --hit: rgba(251,179,21,0.3);
+  --scrim: rgba(0,0,0,0.5);
+  --shadow-raised: 0 4px 20px rgba(0,0,0,0.035);
+  color-scheme: dark;
+}
+[data-theme="light"] {
   --bg: #FFFFFF;
   --bg-side: #FAFAFA;
   --bg-raised: #FFFFFF;
@@ -22,31 +47,7 @@
   --hit: rgba(251,179,21,0.33);
   --scrim: rgba(0,0,0,0.35);
   --shadow-raised: 0 4px 20px rgba(0,0,0,0.035);
-}
-[data-theme="dark"] {
-  --bg: #1C1C1C;
-  --bg-side: #181818;
-  --bg-raised: #262626;
-  --plate: #E3E2DD;
-  --on-plate: #55554F;
-  --text: rgba(255,255,255,0.9);
-  --text-2: rgba(255,255,255,0.6);
-  --text-3: rgba(255,255,255,0.5);
-  --line: rgba(255,255,255,0.08);
-  --line-strong: rgba(255,255,255,0.14);
-  --line-control: rgba(255,255,255,0.42);
-  --fill: rgba(255,255,255,0.06);
-  --fill-strong: rgba(255,255,255,0.11);
-  --olive: #8A9A52;
-  --on-olive: #0E100C;
-  --olive-ink: #B4C47A;
-  --brand: #6B7A3A;
-  --warn: #E0B040;
-  --danger: #F07A6A;
-  --hit: rgba(251,179,21,0.3);
-  --scrim: rgba(0,0,0,0.5);
-  --shadow-raised: 0 4px 20px rgba(0,0,0,0.25);
-  color-scheme: dark;
+  color-scheme: light;
 }
 :root {
   --space-2: 2px;
