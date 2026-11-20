@@ -1,0 +1,278 @@
+<!-- PROTOTYPE, throwaway. Knowledge-base article in a shell that ports the Claude desktop app layout, type sizes and spacing as closely as possible. Sample text and data. -->
+<title>Дронопорт стаття прототип</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap">
+<style>
+/* Layout: three columns on one ground (320 | fluid, 728 text | 354), 1px 15% dividers, raised input one step lighter. Sizes taken from the reference screenshot at 125% scaling. */
+:root{
+  --bg:#FAF9F5; --raised:#FFFFFF; --text:#141413; --text-2:#3D3D3A; --text-3:#73726C;
+  --border:#1F1E1D26; --hover:#1F1E1D0F; --selected:#1F1E1D1A; --chip:#1F1E1D0F;
+  --accent:#5C6A30; --on-accent:#FFFFFF; --ok:#4F5A2A;
+  --sans:"Onest","Segoe UI",system-ui,sans-serif; --mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#1F1E1D; --raised:#2B2A28; --text:#F5F4EF; --text-2:#C2C0B6; --text-3:#9C9A92;
+  --border:#DEDCD126; --hover:#FAF9F50F; --selected:#FAF9F51A; --chip:#FAF9F514;
+  --accent:#8A9A52; --on-accent:#141413; --ok:#B4C47A; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#1F1E1D; --raised:#2B2A28; --text:#F5F4EF; --text-2:#C2C0B6; --text-3:#9C9A92;
+  --border:#DEDCD126; --hover:#FAF9F50F; --selected:#FAF9F51A; --chip:#FAF9F514;
+  --accent:#8A9A52; --on-accent:#141413; --ok:#B4C47A; color-scheme:dark}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{background:var(--bg);color:var(--text);font:400 15px/1.45 var(--sans);-webkit-font-smoothing:antialiased}
+h1,h2,p,ul,ol{margin:0;padding:0} ul,ol{list-style:none}
+a{color:inherit} button,input{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--ok);outline-offset:1px}
+svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.ib{display:grid;place-items:center;width:32px;height:32px;border:0;background:none;border-radius:8px;cursor:pointer;color:var(--text-2)}
+.ib:hover{background:var(--hover);color:var(--text)}
+.ib[aria-pressed="true"]{background:var(--selected);color:var(--text)}
+.num{font-variant-numeric:tabular-nums}
+
+.app{display:grid;grid-template-columns:320px minmax(0,1fr) 354px;height:100%}
+
+/* left */
+.side{display:flex;flex-direction:column;border-right:1px solid var(--border);min-height:0}
+.bar{display:flex;align-items:center;gap:6px;height:41px;padding:0 12px;flex:none}
+.brand{font-weight:600;font-size:16px;letter-spacing:-.01em;margin-left:6px}
+.side nav{padding:6px 8px 0;flex:none}
+.row{display:flex;align-items:center;gap:12px;height:36px;padding:0 12px;margin-bottom:2px;border-radius:8px;text-decoration:none;color:var(--text);cursor:pointer;border:0;background:none;width:100%;text-align:left}
+.row:hover{background:var(--hover)}
+.row[aria-current]{background:var(--selected)}
+.row span{flex:1;min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.row svg{color:var(--text-2)}
+.row .tail{color:var(--text-3);width:18px;height:18px}
+.list{flex:1;overflow-y:auto;padding:14px 8px 8px;min-height:0}
+.grp{display:flex;align-items:center;gap:6px;height:32px;padding:0 12px;margin-top:10px;font-size:13px;font-weight:500;color:var(--text-3)}
+.grp svg{width:14px;height:14px}
+.user{display:flex;align-items:center;gap:10px;height:52px;padding:0 14px;border-top:1px solid var(--border);flex:none}
+.ava{display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--accent);color:var(--on-accent);font-size:11px;font-weight:600}
+.user small{color:var(--text-3);font-size:14px}
+.user .sp,.bar .sp{flex:1}
+
+/* center */
+.main{display:flex;flex-direction:column;min-width:0;min-height:0}
+.main .bar{border-bottom:1px solid var(--border);padding:0 16px 0 24px}
+.title{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:500;min-width:0}
+.title b{font-weight:500;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.share{display:flex;align-items:center;gap:8px;height:32px;padding:0 10px;border:0;background:none;border-radius:8px;cursor:pointer;font-weight:500}
+.share:hover{background:var(--hover)}
+.scroll{flex:1;overflow-y:auto;min-height:0}
+.col{max-width:792px;margin:0 auto;padding:20px 32px 40px}
+.meta{display:flex;align-items:center;gap:8px;color:var(--text-3);margin:0 0 22px}
+.meta a{color:var(--text-2);text-decoration:none} .meta a:hover{color:var(--text)}
+.meta svg{width:14px;height:14px}
+article{font-size:16px;line-height:1.45}
+article h1{font-size:24px;line-height:1.25;font-weight:600;letter-spacing:-.01em;margin:6px 0 18px}
+article h2{font-size:18px;line-height:1.35;font-weight:600;margin:30px 0 12px}
+article p{margin:0 0 16px}
+article ul{margin:0 0 16px;padding-left:38px;list-style:disc}
+article ol{margin:0 0 16px;padding-left:38px;list-style:decimal}
+article li{margin:0 0 6px;padding-left:6px}
+article b{font-weight:600}
+code{font:400 .875em/1 var(--mono);background:var(--chip);border-radius:4px;padding:2px 5px;white-space:nowrap}
+.note{border:1px solid var(--border);border-radius:12px;padding:12px 16px;margin:0 0 16px;color:var(--text-2)}
+.acts{display:flex;align-items:center;gap:2px;color:var(--text-3);margin-top:6px;font-size:14px}
+.acts .ib{width:28px;height:28px} .acts svg{width:16px;height:16px} .acts span{margin-left:10px}
+.dock{flex:none;padding:0 32px 10px;background:var(--bg)}
+.composer{display:flex;align-items:center;gap:10px;max-width:848px;margin:0 auto;height:48px;padding:0 10px 0 14px;background:var(--raised);border:1px solid var(--border);border-radius:14px}
+.composer:focus-within{border-color:var(--text-3)}
+.composer input{flex:1;min-width:0;border:0;background:none;outline:0;font-size:16px}
+.composer input::placeholder{color:var(--text-3)}
+.go{display:grid;place-items:center;width:30px;height:30px;border:0;border-radius:8px;background:var(--accent);color:var(--on-accent);cursor:pointer}
+.go svg{width:16px;height:16px;stroke-width:2}
+.status{display:flex;justify-content:flex-end;gap:14px;max-width:848px;margin:10px auto 0;font-size:14px;color:var(--text-3)}
+.status b{font-weight:500;color:var(--text)}
+
+/* right */
+.panel{border-left:1px solid var(--border);padding:8px 18px 24px;overflow-y:auto;min-height:0;font-size:14px}
+.panel section{padding:12px 0 14px}
+.panel section+section{border-top:1px solid var(--border)}
+.panel h2{display:flex;align-items:center;gap:6px;font-size:14.5px;font-weight:500;margin:0 0 8px}
+.panel h2 small{margin-left:auto;font-size:14px;font-weight:400;color:var(--text-3)}
+.panel h2 svg{width:14px;height:14px;color:var(--text-3)}
+.kv{display:flex;align-items:center;gap:14px;min-height:36px}
+.kv svg{width:18px;height:18px;color:var(--text-2)}
+.kv span{flex:1;min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.read{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}
+.read b{font-weight:500} .read span{color:var(--text-3)}
+.track{height:3px;border-radius:2px;background:var(--selected);margin-bottom:10px;overflow:hidden}
+.track i{display:block;height:100%;width:0;background:var(--accent);border-radius:2px}
+.toc a{display:grid;grid-template-columns:12px minmax(0,1fr) auto;gap:14px;align-items:center;min-height:27px;text-decoration:none;color:var(--text-2)}
+.toc a:hover{color:var(--text)}
+.toc i{width:10px;height:10px;border-radius:3px;background:var(--selected)}
+.toc a.on{color:var(--text)} .toc a.on i{background:var(--accent)}
+.toc small{font-size:14px;color:var(--text-3)}
+.buy{display:grid;grid-template-columns:18px minmax(0,1fr) auto;gap:14px;align-items:center;min-height:40px;text-decoration:none;border-radius:8px}
+.buy svg{width:18px;height:18px;color:var(--text-2)}
+.buy span{overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.buy small{font-size:14px;color:var(--text-3)}
+.buy .in{color:var(--ok)}
+.cta{display:block;width:100%;height:36px;margin-top:10px;border:0;border-radius:8px;background:var(--accent);color:var(--on-accent);font-weight:500;cursor:pointer}
+
+@media (max-width:1180px){.app{grid-template-columns:280px minmax(0,1fr)}.panel{display:none}}
+@media (max-width:760px){
+  html,body{height:auto}
+  .app{display:block}
+  .side{display:none}
+  .main{display:block}
+  .main .bar{position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);z-index:2;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+  .scroll{overflow:visible}
+  .col{padding-block:16px 24px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+  article ul,article ol{padding-left:24px}
+  .dock{position:sticky;bottom:0;padding-block:8px calc(8px + env(safe-area-inset-bottom,0px));padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+  .status,.share b{display:none}
+  .panel{display:block;border-left:0;border-top:1px solid var(--border);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+  .row,.kv,.buy,.toc a{min-height:44px}
+}
+@media (prefers-reduced-motion:no-preference){.row,.ib,.share{transition:background-color .12s cubic-bezier(.32,.72,0,1)}}
+</style>
+
+<div class="app">
+  <aside class="side">
+    <div class="bar">
+      <button class="ib" aria-label="Меню"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h10M4 17h16"/></svg></button>
+      <span class="brand">Дронопорт</span><span class="sp"></span>
+      <button class="ib" aria-label="Згорнути панель"><svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="14" rx="2.5"/><path d="M9 5v14"/></svg></button>
+    </div>
+    <nav aria-label="Головне меню">
+      <a class="row" href="#"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg><span>Каталог</span></a>
+      <a class="row" href="#"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg><span>Пошук</span></a>
+      <a class="row" href="#"><svg viewBox="0 0 24 24"><path d="M5 4.5h10.5a3 3 0 0 1 3 3V20H8a3 3 0 0 1-3-3z"/><path d="M5 17a3 3 0 0 1 3-3h10.5"/></svg><span>База знань</span></a>
+      <a class="row" href="#"><svg viewBox="0 0 24 24"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7.5" cy="17.5" r="1.7"/><circle cx="17.5" cy="17.5" r="1.7"/></svg><span>Доставка</span></a>
+      <a class="row" href="#"><svg viewBox="0 0 24 24"><circle cx="6" cy="12" r=".6"/><circle cx="12" cy="12" r=".6"/><circle cx="18" cy="12" r=".6"/></svg><span>Ще</span></a>
+    </nav>
+    <div class="list">
+      <div class="grp">Закріплені <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></div>
+      <a class="row" href="#"><svg viewBox="0 0 24 24"><path d="M7 3.5h7l4 4V20.5H7z"/><path d="M14 3.5v4h4"/></svg><span>Розпіновка польотного контролера F405</span></a>
+      <a class="row" href="#"><svg viewBox="0 0 24 24"><path d="M7 3.5h7l4 4V20.5H7z"/><path d="M14 3.5v4h4"/></svg><span>Як читати маркування мотора</span></a>
+      <a class="row" href="#"><svg viewBox="0 0 24 24"><path d="M7 3.5h7l4 4V20.5H7z"/><path d="M14 3.5v4h4"/></svg><span>Таблиця частот відеопередавачів 5,8 ГГц</span></a>
+
+      <div class="grp">Силова установка <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></div>
+      <div class="grp">Зв’язок <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></div>
+      <div class="grp">Живлення <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></div>
+      <a class="row" href="#" aria-current="page"><span>Як підібрати LiPo до моторів 2207</span><svg class="tail" viewBox="0 0 24 24"><circle cx="6" cy="12" r=".6"/><circle cx="12" cy="12" r=".6"/><circle cx="18" cy="12" r=".6"/></svg></a>
+      <a class="row" href="#"><span>Зберігання LiPo взимку</span></a>
+      <a class="row" href="#"><span>Роз’єми XT30, XT60, XT90: що куди</span></a>
+      <a class="row" href="#"><span>Скільки ампер тримає дріт 12 AWG</span></a>
+      <a class="row" href="#"><span>Li-Ion 21700 для далеких польотів</span></a>
+      <a class="row" href="#"><span>Зарядна станція в полі: живлення</span></a>
+      <div class="grp">Керування польотом <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></div>
+    </div>
+    <div class="user">
+      <span class="ava num">2</span><span>Кошик</span><small class="num">· 2 400 ₴</small><span class="sp"></span>
+      <button class="ib" aria-label="Тема оформлення"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.5"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M18.4 5.6L17 7M7 17l-1.4 1.4"/></svg></button>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="bar">
+      <div class="title"><b>Як підібрати LiPo до моторів 2207</b><svg viewBox="0 0 24 24" style="width:16px;height:16px"><path d="M6 9l6 6 6-6"/></svg></div>
+      <span class="sp"></span>
+      <button class="ib" aria-pressed="true" aria-label="Зміст"><svg viewBox="0 0 24 24"><path d="M9 7h11M9 12h11M9 17h11"/><circle cx="4.5" cy="7" r=".6"/><circle cx="4.5" cy="12" r=".6"/><circle cx="4.5" cy="17" r=".6"/></svg></button>
+      <button class="ib" aria-label="Завантажити PDF"><svg viewBox="0 0 24 24"><path d="M12 4v11M7.5 11l4.5 4.5 4.5-4.5M5 20h14"/></svg></button>
+      <button class="share" id="share"><svg viewBox="0 0 24 24" style="width:18px;height:18px"><path d="M12 15V4M8 7.5l4-4 4 4M6 11v8.5h12V11"/></svg><b>Поділитися</b></button>
+    </div>
+    <div class="scroll" id="scroll">
+      <div class="col">
+        <p class="meta"><a href="#">База знань</a><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg><a href="#">Живлення</a><span>· оновлено 18.11.2026 · текст для прикладу</span></p>
+        <article>
+          <h1 id="s0">Як підібрати LiPo до моторів 2207</h1>
+          <p>Мотор <code>2207 1950KV</code> розрахований на шість банок. Акумулятор <code>6S</code> має номінальну напругу 22,2 В і 25,2 В у повністю зарядженому стані. Нижче — як обрати ємність, струмовіддачу й роз’єм, щоб батарея не просідала під газом.</p>
+
+          <h2 id="s1">Що вже відомо з маркування</h2>
+          <ul>
+            <li><b>Кількість банок:</b> <code>6S</code> — шість послідовно, 3,7 В номіналу на кожну.</li>
+            <li><b>Ємність:</b> для рами 5 дюймів зазвичай беруть 1100–1300 мА·год; більша ємність додає масу й не завжди додає час.</li>
+            <li><b>Струмовіддача:</b> число з літерою C. Тривалий струм дорівнює ємності в ампер-годинах, помноженій на C.</li>
+            <li><b>Роз’єм:</b> <code>XT60</code> — стандарт для цього класу, тривалий струм до 60 А.</li>
+          </ul>
+
+          <h2 id="s2">Рахуємо струм</h2>
+          <p>Чотири мотори на повному газі короткочасно беруть до 35–40 А кожен, тобто до 160 А разом. Такий пік триває частки секунди, а середній струм у польоті в кілька разів менший.</p>
+          <ol>
+            <li>Візьміть ємність: 1,3 А·год.</li>
+            <li>Помножте на заявлену струмовіддачу: 1,3 × 100C = 130 А.</li>
+            <li>Порівняйте з піком силової установки й залиште запас 20–30 %.</li>
+          </ol>
+          <p class="note">Заявлене число C у різних виробників не порівнюване напряму. Надійніший показник — внутрішній опір банки, виміряний зарядним пристроєм.</p>
+
+          <h2 id="s3">Напруга під навантаженням</h2>
+          <p>Під різким газом напруга просідає. Якщо на банку припадає менше 3,3 В, акумулятор замалий або зношений. У телеметрії стежте за мінімальною напругою банки, а не за загальною.</p>
+          <ul>
+            <li><b>Заряджений:</b> 4,2 В на банку, 25,2 В разом.</li>
+            <li><b>Зберігання:</b> 3,8 В на банку, 22,8 В разом.</li>
+            <li><b>Сідати пора:</b> 3,5 В на банку в спокої, 21,0 В разом.</li>
+          </ul>
+
+          <h2 id="s4">Що взяти</h2>
+          <p>Для <code>TM-F60V-1950</code> на рамі 5 дюймів підійде <code>6S 1300 мА·год 100C</code> з роз’ємом <code>XT60</code>. Для рами 7 дюймів із тими самими моторами беріть 1800–2200 мА·год і перевірте масу: кожні 100 г додають помітне навантаження на мотори.</p>
+          <div class="acts">
+            <button class="ib" id="copy" aria-label="Копіювати посилання"><svg viewBox="0 0 24 24"><rect x="8.5" y="8.5" width="11" height="11" rx="2"/><path d="M15.5 8.5V6a1.5 1.5 0 0 0-1.5-1.5H6A1.5 1.5 0 0 0 4.5 6v8A1.5 1.5 0 0 0 6 15.5h2.5"/></svg></button>
+            <button class="ib" aria-label="Закріпити статтю"><svg viewBox="0 0 24 24"><path d="M9 4h6l-1 6 3 3H7l3-3zM12 13v7"/></svg></button>
+            <span id="copied">6 хв читання</span>
+          </div>
+        </article>
+      </div>
+    </div>
+    <div class="dock">
+      <form class="composer" id="ask">
+        <svg viewBox="0 0 24 24" style="color:var(--text-3)"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg>
+        <input id="q" type="search" placeholder="Пошук у базі знань: назва, артикул або параметр" aria-label="Пошук у базі знань">
+        <button class="go" aria-label="Шукати"><svg viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button>
+      </form>
+      <div class="status"><span><b>База знань</b> · 148 статей</span><span>Живлення · 12</span></div>
+    </div>
+  </div>
+
+  <aside class="panel" aria-label="Про статтю">
+    <section>
+      <h2>Стаття</h2>
+      <div class="kv"><svg viewBox="0 0 24 24"><path d="M3.5 7.5v10h17v-8h-8l-2-2z"/></svg><span>Живлення</span></div>
+      <div class="kv"><svg viewBox="0 0 24 24"><rect x="4" y="8" width="14" height="9" rx="2"/><path d="M20.5 11v3"/></svg><span>LiPo, 6S</span></div>
+      <div class="kv"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 7.5V12l3 2"/></svg><span>Оновлено 18.11.2026</span></div>
+    </section>
+    <section>
+      <h2>Зміст</h2>
+      <div class="read"><b id="pct" class="num">0% прочитано</b><span class="num">6 хв</span></div>
+      <div class="track"><i id="bar"></i></div>
+      <nav class="toc" id="toc" aria-label="Зміст статті">
+        <a href="#s1"><i></i><span>Що вже відомо з маркування</span><small class="num">1 хв</small></a>
+        <a href="#s2"><i></i><span>Рахуємо струм</span><small class="num">2 хв</small></a>
+        <a href="#s3"><i></i><span>Напруга під навантаженням</span><small class="num">2 хв</small></a>
+        <a href="#s4"><i></i><span>Що взяти</span><small class="num">1 хв</small></a>
+      </nav>
+    </section>
+    <section>
+      <h2>Товари зі статті <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg><small class="num">3 в наявності</small></h2>
+      <a class="buy" href="#"><svg viewBox="0 0 24 24"><rect x="4" y="8" width="14" height="9" rx="2"/><path d="M20.5 11v3"/></svg><span>LiPo 6S 1300 мА·год 100C XT60</span><small class="num">1 180 ₴</small></a>
+      <a class="buy" href="#"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="7.5"/><circle cx="12" cy="12" r="2"/></svg><span>T-Motor F60 Pro V 2207 1950KV</span><small class="num">1 380 ₴</small></a>
+      <a class="buy" href="#"><svg viewBox="0 0 24 24"><path d="M5 9h9l5 3-5 3H5z"/></svg><span>Роз’єм XT60, пара</span><small class="num">60 ₴</small></a>
+      <button class="cta">У кошик усе · 2 620 ₴</button>
+    </section>
+    <section>
+      <h2>Пов’язані статті <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></h2>
+      <a class="buy" href="#"><svg viewBox="0 0 24 24"><path d="M7 3.5h7l4 4V20.5H7z"/><path d="M14 3.5v4h4"/></svg><span>Зберігання LiPo взимку</span><small></small></a>
+      <a class="buy" href="#"><svg viewBox="0 0 24 24"><path d="M7 3.5h7l4 4V20.5H7z"/><path d="M14 3.5v4h4"/></svg><span>Роз’єми XT30, XT60, XT90: що куди</span><small></small></a>
+    </section>
+  </aside>
+</div>
+
+<script>
+const sc=document.getElementById('scroll'), heads=[...document.querySelectorAll('article h2')], links=[...document.querySelectorAll('#toc a')];
+function progress(){
+  const page=getComputedStyle(sc).overflowY==='visible';
+  const top=page?scrollY:sc.scrollTop, max=page?document.documentElement.scrollHeight-innerHeight:sc.scrollHeight-sc.clientHeight;
+  const p=max>0?Math.min(1,top/max):1;
+  bar.style.width=(p*100)+'%'; pct.textContent=Math.round(p*100)+'% прочитано';
+  let on=0; heads.forEach((h,i)=>{if(h.getBoundingClientRect().top<innerHeight*.4)on=i});
+  links.forEach((a,i)=>a.classList.toggle('on',i===on));
+}
+sc.addEventListener('scroll',progress,{passive:true}); addEventListener('scroll',progress,{passive:true}); addEventListener('resize',progress); progress();
+links.forEach(a=>a.addEventListener('click',e=>{e.preventDefault();document.querySelector(a.getAttribute('href')).scrollIntoView({behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth',block:'start'})}));
+function copyLink(){const done=()=>{copied.textContent='Посилання скопійовано'};(navigator.clipboard?navigator.clipboard.writeText(location.href):Promise.reject()).then(done,()=>{copied.textContent=location.href})}
+copy.onclick=copyLink; share.onclick=copyLink;
+ask.addEventListener('submit',e=>{e.preventDefault();copied.textContent=q.value?'Пошук у прототипі не працює':'6 хв читання'});
+</script>
