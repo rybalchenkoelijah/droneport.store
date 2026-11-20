@@ -58,11 +58,11 @@
       "computedHash": "52dd446e364285436f09d1176466bd7cb63f46d2e65e3a7e83a59e50c0338b6d"
     },
     "grill-me": {
-      "source": "BuilderIO/builder-agent-skills",
-      "commit": "44ee461ce9532c69e0ae8df7b31949c3ae7b3286",
+      "source": "mattpocock/skills",
+      "commit": "abeeaf95660ba9e8b7c753eb38f441ca707a8823",
       "sourceType": "github",
-      "skillPath": "grill-me/SKILL.md",
-      "computedHash": "759d76efe2d92ed6bb88116e126ee81226bd983afcf92d4912a4fa21dccbce28"
+      "skillPath": "skills/productivity/grill-me/SKILL.md",
+      "computedHash": "ab1acb9fbd9eaee03da254abb8a8de228d1e7a07475fe959da4a5eefa34ea4b9"
     },
     "grill-with-docs": {
       "source": "mattpocock/skills",
