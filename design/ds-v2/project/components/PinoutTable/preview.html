@@ -1,0 +1,25 @@
+<!-- @dsCard group="MDX" height=660 -->
+<div class="prose" style="max-width:calc(var(--measure) + 2*var(--space-8));padding:var(--space-4) var(--space-8)">
+<small style="color:var(--text-2)">.tbl.pinout: вивід mono, функція, примітка. Приклад; звіряйтеся зі схемою своєї плати</small>
+<div class="tbl-wrap" style="margin-top:var(--space-6)" tabindex="0" role="region" aria-label="Розпіновка: приймач ELRS до польотного контролера"><table class="tbl pinout">
+<caption>Приймач ELRS до польотного контролера, протокол CRSF</caption>
+<thead><tr><th scope="col">Вивід приймача</th><th scope="col">Функція</th><th scope="col">Куди й примітка</th></tr></thead>
+<tbody>
+<tr><td class="pin">5V</td><td>Живлення приймача</td><td>Майданчик <code>5V</code> контролера. Напругу живлення звірте з паспортом приймача.</td></tr>
+<tr><td class="pin">GND</td><td>Земля</td><td>Майданчик <code>GND</code> поруч з обраним UART.</td></tr>
+<tr><td class="pin">TX</td><td>Дані від приймача до контролера</td><td>До <code>RX</code> обраного UART, наприклад <code>R2</code>.</td></tr>
+<tr><td class="pin">RX</td><td>Телеметрія від контролера до приймача</td><td>До <code>TX</code> того самого UART, наприклад <code>T2</code>.</td></tr>
+</tbody></table></div>
+<small style="color:var(--text-2)">Виділений рядок tr.hot: вивід, про який ідеться в тексті</small>
+<div class="tbl-wrap" style="margin-top:var(--space-6)" tabindex="0" role="region" aria-label="Розпіновка: балансувальний роз’єм 3S"><table class="tbl pinout">
+<caption>Балансувальний роз’єм акумулятора <code>3S</code> (JST-XH, 4 контакти)</caption>
+<thead><tr><th scope="col">Контакт</th><th scope="col">Функція</th><th scope="col">Примітка</th></tr></thead>
+<tbody>
+<tr><td class="pin">1</td><td>Мінус першої банки</td><td>Спільна земля акумулятора.</td></tr>
+<tr class="hot"><td class="pin">2</td><td>Плюс першої банки</td><td>Між контактами 1 і 2 — напруга першої банки, до 4,2&nbsp;В.</td></tr>
+<tr><td class="pin">3</td><td>Плюс другої банки</td><td>Між контактами 2 і 3 — напруга другої банки.</td></tr>
+<tr><td class="pin">4</td><td>Плюс третьої банки</td><td>Між контактами 1 і 4 — повна напруга, до 12,6&nbsp;В.</td></tr>
+</tbody></table></div>
+<small style="color:var(--text-2)">Порожньо: розпіновки ще немає</small>
+<p class="empty" style="margin-top:var(--space-6)">Розпіновку для цієї плати ще не додано. Скористайтеся <a class="link" href="#docs">документацією виробника</a>.</p>
+</div>
